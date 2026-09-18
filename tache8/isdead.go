@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func isdead(e personnage.Etudiant) {
+func Isdead(e personnage.Etudiant) {
 	if e.Vie == 0 {
 		fmt.Println("tu es mort mais tout le monde a le droit à une seconde chance")
 		e.Vie = 50
