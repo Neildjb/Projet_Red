@@ -1,6 +1,4 @@
 # Projet_Red
-<<<<<<< HEAD
-=======
 
 ## Arborescence du projet
 
@@ -13,4 +11,3 @@ Projet_Red/
 │   └── personnage.go
 ├── README.md
 ```
->>>>>>> dd6f18e3abc70cffe1ff8c719108a50e85bd5298
