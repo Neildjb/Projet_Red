@@ -1,16 +1,26 @@
 package personnage
 
-type Etudiant struct{
-	nom string
-	classe string
-	niveau int 
-	max_vie int
-	vie int
-	inventaire []string
+import "fmt"
+
+type Etudiant struct {
+	Nom        string
+	Classe     string
+	Niveau     int
+	MaxVie     int
+	Vie        int
+	Inventaire []string
 }
 
-func initCharacter(nom string,classe string ,niveau int,max_vie int,vie int,inventaire []string) struct {
-	return Etudiant{nom,classe,niveau,max_vie,vie,inventaire}
+func InitCharacter(nom, classe string, niveau, maxVie, vie int, inventaire []string) Etudiant {
+	return Etudiant{
+		Nom:        nom,
+		Classe:     classe,
+		Niveau:     niveau,
+		MaxVie:     maxVie,
+		Vie:        vie,
+		Inventaire: inventaire,
+	}
 }
-
-
+func DisplayInfo(c Etudiant) {
+	fmt.Print(c)
+}
