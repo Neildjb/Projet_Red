@@ -1,4 +1,5 @@
-package isdead
+
+package tache8
 
 import (
 	"Projet_Red/personnage"
