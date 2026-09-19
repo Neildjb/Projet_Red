@@ -1,4 +1,4 @@
-package main
+package tache8
 
 import (
 	"Projet_Red/personnage"
