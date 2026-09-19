@@ -1,4 +1,4 @@
-package main
+package isdead
 
 import (
 	"Projet_Red/personnage"

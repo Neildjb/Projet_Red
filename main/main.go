@@ -9,6 +9,6 @@ import (
 
 func main() {
 	c1 := personnage.InitCharacter("Kael", "Etudiant", 1, 10, 5, []string{})
-	tache8.isdead()
+	tache8.Isdead()
 	fmt.Print(c1)
 }
