@@ -10,6 +10,13 @@ type Etudiant struct {
 	Vie        int
 	Inventaire []string
 	Argent	   int
+	Equipement Equipment
+}
+
+type Equipment struct{
+	Headgear string
+	BodyArmor string
+	FeetArmor string
 }
 
 func InitCharacter(nom, classe string, niveau, maxVie, vie int, inventaire []string) Etudiant {

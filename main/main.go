@@ -8,8 +8,9 @@ import (
 )
 
 func main() {
-	c1 := personnage.InitCharacter("Kael", "Etudiant", 1, 10, 5, []string{})
+	c1 := personnage.InitCharacter("Kael", "Etudiant", 1, 10, 5, []string{},"chapeau d'aventurier")
 	tache8.Isdead(c1)
-	fmt.Print(c1)
+	fmt.Print(c1.Argent)
+	fmt.Print(c1.E)
 	tache8.Isdead(c1)
 }
