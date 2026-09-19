@@ -9,6 +9,7 @@ type Etudiant struct {
 	MaxVie     int
 	Vie        int
 	Inventaire []string
+	Argent	   int
 }
 
 func InitCharacter(nom, classe string, niveau, maxVie, vie int, inventaire []string) Etudiant {
@@ -19,6 +20,7 @@ func InitCharacter(nom, classe string, niveau, maxVie, vie int, inventaire []str
 		MaxVie:     maxVie,
 		Vie:        vie,
 		Inventaire: inventaire,
+		Argent:     100,
 	}
 }
 func DisplayInfo(c Etudiant) {
