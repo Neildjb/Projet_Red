@@ -24,5 +24,3 @@ func InitCharacter(nom, classe string, niveau, maxVie, vie int, inventaire []str
 func DisplayInfo(c Etudiant) {
 	fmt.Print(c)
 }
-
-
