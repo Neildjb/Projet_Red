@@ -36,6 +36,4 @@ func main() {
 
 	fmt.Print("Commencons par vous expliquer coment acceder au menu")
 	fmt.Println("il faut ecrire 'menu()' et appuyer sur entrer")
-	
-
 }
