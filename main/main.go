@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"Projet_Red/tache7101111suite"
 	"Projet_Red/Menu"
+	"Projet_Red/inventaire"
 )
 
 func main() {
@@ -38,4 +39,13 @@ func main() {
 	fmt.Print("Commencons par vous expliquer coment acceder au menu")
 	fmt.Println("il faut ecrire 'menu()' et appuyer sur entrer")
 	Menu.Menu(c1)
+	tache8.Isdead(c1)
+	fmt.Print("t'as que " + strconv.Itoa(c1.Argent) + " euros pour commencer sale pauvre ")
+	fmt.Print(c1.Equipement)
+	c1.Vie = 0
+	tache8.Isdead(c1)
+	tache7101111suite.AddInventory(&c1,"Kunaï")
+	inventaire.AccessInventory(c1)
+	tache7101111suite.RemoveInventory(&c1,"Kunaï")
+	inventaire.AccessInventory(c1)
 }
