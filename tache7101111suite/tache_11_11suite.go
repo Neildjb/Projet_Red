@@ -29,7 +29,7 @@ func Capitalize(s string) string {
 	return string(tab)
 }
 
-func characterCreation(nom, classe string) string {
+func CharacterCreation(nom, classe string) personnage.Etudiant {
 
 	nom = Capitalize(nom)
 
@@ -37,18 +37,23 @@ func characterCreation(nom, classe string) string {
 	maxVie := 0
 	vie := 0
 
-	if classe == "Etudiant" {
+	if classe == "Kage" {
+		maxVie = 300
+		vie = maxVie
+	}
+
+	if classe == "Jonin" {
+		maxVie = 150
+		vie = maxVie
+	}
+
+	if classe == "Genin" {
 		maxVie = 100
 		vie = maxVie
 	}
 
-	if classe == "Futur_Etudiant" {
-		maxVie = 80
-		vie = maxVie
-	}
-
-	if classe == "Etudiant_B2" {
-		maxVie = 120
+	if classe == "ninja" {
+		maxVie = 50
 		vie = maxVie
 	}
 
@@ -60,7 +65,7 @@ func characterCreation(nom, classe string) string {
 		FeetArmor: "chaussures qui court vite",
 	}
 
-	personnage.InitCharacter(
+	c := personnage.InitCharacter(
 		nom,
 		classe,
 		niveau,
@@ -70,5 +75,5 @@ func characterCreation(nom, classe string) string {
 		equipement,
 	)
 
-	return "votre nouveau personnage a été créé avec succès !"
+	return c
 }
