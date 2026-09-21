@@ -53,3 +53,7 @@ func InitGoblin() Monster{
 func DisplayInfo(c Etudiant) {
 	fmt.Print(c)
 }
+
+func AjouterItem(c *Etudiant, item string) {
+    c.Inventaire = append(c.Inventaire, item)
+}

@@ -3,9 +3,8 @@ package tache7101111suite
 // TACHE 7 : Marchand
 
 import (
-	"fmt"
-
 	"Projet_Red/personnage"
+	"fmt"
 )
 
 func Marchand() {
@@ -14,6 +13,6 @@ func Marchand() {
 	fmt.Println("Tapez AchatPotionDeVie() pour récupérer votre potion de vie.")
 }
 
-func AchatPotionDeVie() {
-	personnage.Etudiant.Inventaire = append(personnage.Etudiant.Inventaire, "potion de vie")
+func AchatPotionDeVie(c *personnage.Etudiant) {
+	c.Inventaire = append(c.Inventaire, "potion de vie")
 }

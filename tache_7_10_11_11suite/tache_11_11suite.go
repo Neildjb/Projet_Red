@@ -1,8 +1,9 @@
 package tache7101111suite
+
 import "Projet_Red/personnage"
+
 // TACHE 11 : Amélioration de la création de personnage
 // TACHE 11 - suite
-
 
 func Capitalize(s string) string {
 	tab := []rune(s)
@@ -28,24 +29,46 @@ func Capitalize(s string) string {
 	return string(tab)
 }
 
-func characterCreation(nom, classe string, )string{
+func characterCreation(nom, classe string) string {
+
 	nom = Capitalize(nom)
-	niveau := 1 
+
+	niveau := 1
 	maxVie := 0
 	vie := 0
+
 	if classe == "Etudiant" {
 		maxVie = 100
 		vie = maxVie
-	} 
+	}
+
 	if classe == "Futur_Etudiant" {
 		maxVie = 80
 		vie = maxVie
 	}
+
 	if classe == "Etudiant_B2" {
 		maxVie = 120
-		vie = maxVie 
+		vie = maxVie
 	}
+
 	inventaire := []string{}
-	personnage.InitCharacter(nom, classe , niveau, maxVie, vie , inventaire)
+
+	equipement := personnage.Equipment{
+		Headgear:  "chapeau très impressionant",
+		BodyArmor: "diamond body",
+		FeetArmor: "chaussures qui court vite",
+	}
+
+	personnage.InitCharacter(
+		nom,
+		classe,
+		niveau,
+		maxVie,
+		vie,
+		inventaire,
+		equipement,
+	)
+
 	return "votre nouveau personnage a été créé avec succès !"
 }
