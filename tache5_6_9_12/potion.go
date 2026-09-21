@@ -42,7 +42,7 @@ func takePot(perso personnage.Etudiant) personnage.Etudiant {
 	return perso
 }
 
-func poisonPot(perso Etudiant) Etudiant {
+func poisonPot(perso personnage.Etudiant) personnage.Etudiant {
 	trouve := false
 	position := 0
 
