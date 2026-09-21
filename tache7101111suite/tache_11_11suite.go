@@ -44,7 +44,6 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 	}
 	argent := 100
 
-
 	if classe == "Kage" {
 		maxVie = 300
 		vie = maxVie
@@ -65,26 +64,15 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		vie = maxVie
 	}
 
-<<<<<<< Updated upstream
-=======
-	inventaire := []string{}
-	argent := 100
-	equipement := personnage.Equipment{
-		Headgear:  "chapeau très impressionant",
-		BodyArmor: "diamond body",
-		FeetArmor: "chaussures qui court vite",
-	}
 	skills := []string{"Coup de poing"}
->>>>>>> Stashed changes
-
 	c := personnage.InitCharacter(
 		nom,
 		classe,
 		niveau,
 		maxVie,
 		vie,
-		inventaire,
 		argent,
+		inventaire,
 		equipement,
 		skills,
 	)

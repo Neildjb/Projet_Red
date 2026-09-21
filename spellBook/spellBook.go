@@ -1,4 +1,4 @@
 package spellbook
 
 func SpellBook() {
-	
+}

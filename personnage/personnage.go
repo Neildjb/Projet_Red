@@ -27,7 +27,7 @@ type Monster struct {
 	Points_attaque int
 }
 
-func InitCharacter(nom, classe string, niveau, maxVie, vie int, inventaire []string,Equipement Equipment) Etudiant {
+func InitCharacter(nom, classe string, niveau, maxVie, vie, argent int, inventaire []string, equipement Equipment, skills []string) Etudiant {
 	return Etudiant{
 		Nom:        nom,
 		Classe:     classe,
@@ -35,8 +35,9 @@ func InitCharacter(nom, classe string, niveau, maxVie, vie int, inventaire []str
 		MaxVie:     maxVie,
 		Vie:        vie,
 		Inventaire: inventaire,
-		Argent:     100,
-		Equipement: Equipment{Headgear: "chapeau très impressionant",BodyArmor: "diamond body",FeetArmor: "chaussures qui court vite"},
+		Argent:     argent,
+		Equipement: equipement,
+		Skills:     skills,
 	}
 }
 
@@ -51,7 +52,17 @@ func InitGoblin() Monster {
 }
 
 func DisplayInfo(c Etudiant) {
-	fmt.Print(c)
+	fmt.Println("Nom :", c.Nom)
+	fmt.Println("Classe :", c.Classe)
+	fmt.Println("Niveau :", c.Niveau)
+	fmt.Println("Vie :", c.Vie, "/", c.MaxVie)
+	fmt.Println("Inventaire :", c.Inventaire)
+	fmt.Println("Argent :", c.Argent)
+	fmt.Println("Équipement :")
+	fmt.Println("  Tête :", c.Equipement.Headgear)
+	fmt.Println("  Corps :", c.Equipement.BodyArmor)
+	fmt.Println("  Pieds :", c.Equipement.FeetArmor)
+	fmt.Println("Compétences :", c.Skills)
 }
 
 func AjouterItem(c *Etudiant, item string) {
