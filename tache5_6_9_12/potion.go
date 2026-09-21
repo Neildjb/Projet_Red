@@ -1,8 +1,10 @@
 package personnage
 
 import "fmt"
-
-func takePot(perso Etudiant) Etudiant {
+import (
+	"Projet_Red/personnage"
+)
+func takePot(perso personnage.Etudiant) personnage.Etudiant {
 	trouve := false
 	position := 0
 
