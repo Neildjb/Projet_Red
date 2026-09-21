@@ -4,8 +4,10 @@ import (
 	"Projet_Red/personnage"
 	"fmt"
 	"Projet_Red/tache7101111suite"
+	"Projet_Red/tache8"
 	"Projet_Red/Menu"
 	"Projet_Red/inventaire"
+	"strconv"
 )
 
 func main() {
