@@ -36,7 +36,7 @@ func InitCharacter(nom, classe string, niveau, maxVie, vie int, inventaire []str
 		Vie:        vie,
 		Inventaire: inventaire,
 		Argent:     100,
-		Equipement: Equipment{Headgear: "chapeau très impressionant"},
+		Equipement: Equipment{Headgear: "chapeau très impressionant",BodyArmor: "diamond body",FeetArmor: "chaussures qui court vite"},
 	}
 }
 
