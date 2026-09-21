@@ -12,7 +12,7 @@ func menu(c personnage.Etudiant) {
 	for continuer {
 		fmt.Println("=======MENU=======")
 		fmt.Println("")
-		fmt.Println("tapez 1 pour afficher les informations du personnages, tapez 2 pour afficher l'inventaire.")
+		fmt.Println("tapez 1 pour afficher les informations du personnages, tapez 2 pour afficher l'inventaire. cd")
 
 		var choix string
 		fmt.Scanln(&choix)
