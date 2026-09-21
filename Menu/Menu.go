@@ -1,10 +1,13 @@
 package Menu
 
 import (
-	"fmt"
+	"Projet_Red/inventaire"
+<<<<<<< HEAD
+	"Projet_Red/inventaire"
+=======
 	"Projet_Red/personnage"
-	"Projet_Red/inventaire"
-	"Projet_Red/inventaire"
+	"fmt"
+>>>>>>> 40bcf572fffb55c5dcbcd06b307da73a7314588c
 )
 
 
@@ -24,20 +27,13 @@ func menu(c personnage.Etudiant) {
 
 		var choix string
 		fmt.Scanln(&choix)
-		
-
-		switch choix {
-		case "1":
+		if choix == "1" {
 			personnage.DisplayInfo(c)
-		case "2":
+		} else if choix == "2" {
 			inventaire.AccessInventory(c)
-		case "3":
-			fmt.Println("Bienvenue chez le meilleur marchand de tout Konoha, tout a  un prix voici ce que je te propose : ")
-			fmt.Println(liste_objets)
-			fmt.Scanln()
-		case "4":
+		} else if choix == "3" {
 			continuer = false
-		default:
+		} else {
 			fmt.Println("Choix invalide, réessaie.")
 		}
 	}
