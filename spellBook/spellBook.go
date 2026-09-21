@@ -1,0 +1,4 @@
+package spellbook
+
+func SpellBook() {
+}
