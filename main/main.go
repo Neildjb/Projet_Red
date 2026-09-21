@@ -1,11 +1,14 @@
 package main
 
 import (
+	"Projet_Red/combat"
 	"Projet_Red/personnage"
-	"fmt"
 	"Projet_Red/tache7101111suite"
 	"Projet_Red/Menu"
 	"Projet_Red/inventaire"
+	"fmt"
+	"strconv"
+	"Projet_Red/tache8"
 )
 
 func main() {
