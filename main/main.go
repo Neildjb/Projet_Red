@@ -34,6 +34,6 @@ func main() {
 	fmt.Println("Voici ton personnage :")
 	personnage.DisplayInfo(c1)
 
-	fmt.Print("Commencons par vous expliquer coment acceder au menu")
-	fmt.Println("il faut ecrire 'menu()' et appuyer sur entrer")
+	fmt.Print("Commencons par vous expliquer comment acceder au menu")
+
 }
