@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"strconv"
 	"Projet_Red/tache7101111suite"
+	"Projet_Red/inventaire"
 )
 
 func main() {
@@ -34,4 +35,8 @@ func main() {
 	fmt.Print(c1.Equipement)
 	c1.Vie = 0
 	tache8.Isdead(c1)
+	tache7101111suite.AddInventory(&c1,"Kunaï")
+	inventaire.AccessInventory(c1)
+	tache7101111suite.RemoveInventory(&c1,"Kunaï")
+	inventaire.AccessInventory(c1)
 }
