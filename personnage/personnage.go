@@ -77,7 +77,7 @@ func Init_Maxime() Monster {
 		Max_vie:        40,
 		Vie:            40,
 		Points_attaque: 10,
-		drop:           "",
+		drop:           "Baton de bois",
 	}
 }
 
@@ -87,6 +87,7 @@ func Init_Ninjas_déserteurs() Monster {
 		Max_vie:        60,
 		Vie:            60,
 		Points_attaque: 15,
+		drop:           "fer",
 	}
 }
 
@@ -96,6 +97,7 @@ func Init_Golems_de_chakra() Monster {
 		Max_vie:        80,
 		Vie:            80,
 		Points_attaque: 15,
+		drop:           "chakra",
 	}
 }
 
@@ -105,6 +107,7 @@ func Init_Demon_a_queue() Monster {
 		Max_vie:        100,
 		Vie:            100,
 		Points_attaque: 25,
+		drop:           "queue de demon",
 	}
 }
 
@@ -114,5 +117,6 @@ func Init_Madara() Monster {
 		Max_vie:        150,
 		Vie:            150,
 		Points_attaque: 35,
+		drop:           "armure detruite",
 	}
 }
