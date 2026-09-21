@@ -4,6 +4,7 @@ import (
 	"Projet_Red/personnage"
 	"fmt"
 	"Projet_Red/tache7101111suite"
+	"Projet_Red/Menu"
 )
 
 func main() {
@@ -36,4 +37,5 @@ func main() {
 
 	fmt.Print("Commencons par vous expliquer coment acceder au menu")
 	fmt.Println("il faut ecrire 'menu()' et appuyer sur entrer")
+	Menu.Menu(c1)
 }
