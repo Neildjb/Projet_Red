@@ -53,5 +53,3 @@ func InitGoblin() Monster{
 func DisplayInfo(c Etudiant) {
 	fmt.Print(c)
 }
-
-
