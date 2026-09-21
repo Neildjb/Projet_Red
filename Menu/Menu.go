@@ -1,9 +1,9 @@
 package Menu
 
 import (
-	"fmt"
-	"Projet_Red/personnage"
 	"Projet_Red/inventaire"
+	"Projet_Red/personnage"
+	"fmt"
 )
 
 func menu(c personnage.Etudiant) {
@@ -16,15 +16,14 @@ func menu(c personnage.Etudiant) {
 
 		var choix string
 		fmt.Scanln(&choix)
-
 		if choix == "1" {
-    		personnage.DisplayInfo(c)
+			personnage.DisplayInfo(c)
 		} else if choix == "2" {
-    	inventaire.AccessInventory(c)
+			inventaire.AccessInventory(c)
 		} else if choix == "3" {
-   		 	continuer = false
+			continuer = false
 		} else {
-    		fmt.Println("Choix invalide, réessaie.")
+			fmt.Println("Choix invalide, réessaie.")
 		}
 	}
 }

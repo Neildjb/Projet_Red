@@ -36,6 +36,14 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 	niveau := 1
 	maxVie := 0
 	vie := 0
+	inventaire := []string{}
+	equipement := personnage.Equipment{
+		Headgear:  "rien",
+		BodyArmor: "rien",
+		FeetArmor: "rien",
+	}
+	argent := 100
+
 
 	if classe == "Kage" {
 		maxVie = 300
@@ -57,13 +65,6 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		vie = maxVie
 	}
 
-	inventaire := []string{}
-
-	equipement := personnage.Equipment{
-		Headgear:  "chapeau très impressionant",
-		BodyArmor: "diamond body",
-		FeetArmor: "chaussures qui court vite",
-	}
 
 	c := personnage.InitCharacter(
 		nom,
@@ -72,6 +73,7 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		maxVie,
 		vie,
 		inventaire,
+		argent,
 		equipement,
 	)
 
