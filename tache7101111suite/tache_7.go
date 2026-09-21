@@ -16,3 +16,23 @@ func Marchand() {
 func AchatPotionDeVie(c *personnage.Etudiant) {
 	c.Inventaire = append(c.Inventaire, "potion de vie")
 }
+
+func AddInventory(c *personnage.Etudiant, item string){
+	c.Inventaire= append(c.Inventaire, item)
+}
+
+func RemoveInventory(c *personnage.Etudiant, item string){
+	var res []string
+	for i,_ :=range c.Inventaire{
+		if item == c.Inventaire[i]{
+
+			continue
+			
+		} else {
+			res= append(res,  c.Inventaire[i] )
+			fmt.Println(res[i])
+		}
+	}
+	c.Inventaire=res
+}
+
