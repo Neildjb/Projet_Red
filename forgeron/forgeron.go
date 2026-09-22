@@ -15,9 +15,9 @@ type Recette struct {
 }
 
 var recettes = []Recette{
-	{Nom: "Chapeau de l'aventurier", Ressources: map[string]int{"Plume de Corbeau": 1, "Cuir de Sanglier": 1}},
-	{Nom: "Tunique de l'aventurier", Ressources: map[string]int{"Fourrure de Loup": 2, "Peau de Troll": 1}},
-	{Nom: "Bottes de l'aventurier", Ressources: map[string]int{"Fourrure de Loup": 1, "Cuir de Sanglier": 1}},
+	{Nom: "bandeau frontale ninja", Ressources: map[string]int{"Plume de Corbeau": 1, "Cuir de Sanglier": 1}},
+	{Nom: "Manteau Akatsuki", Ressources: map[string]int{"Fourrure de Loup": 2, "Peau de Troll": 1}},
+	{Nom: "Bottes de Shinobi", Ressources: map[string]int{"Fourrure de Loup": 1, "Cuir de Sanglier": 1}},
 }
 
 func Forgeron(c *personnage.Etudiant) {
