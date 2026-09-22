@@ -7,35 +7,48 @@ import (
 )
 
 func main() {
-	fmt.Println("Bienvenue dans le jeu _")
-	fmt.Println("Vous êtes un Ninja et vous devez combattre des monstres pour devenir le plus fort.")
-	fmt.Println("Commencons par la creation de votre personnage.")
-	fmt.Println("Ecrit moi ton nom :")	
+	fmt.Println("================Shinobi Genesis================")
+	fmt.Println("")
+	fmt.Println("Bienvenue dans Shinobi Genesis jeune apprenti Ninja,")
+	fmt.Println("vous êtes un Ninja et vous devez combattre des monstres pour obtenir des pièces afin d'améliorer vos compétences pour devenir plus fort!")
+	fmt.Println("")
+	fmt.Println("Tout d'abord, commençons par la création de votre personnage.")
+	fmt.Println("Écrivez votre pseudo :")	
 	
 	var choix string
 	var choix2 string
 
 	_, err := fmt.Scanln(&choix)
 	if err != nil {
-		fmt.Println("Erreur de lecture sur le blaze")
+		fmt.Println("Erreur de lecture de votre pseudo")
 	}
 
-	fmt.Println("La classe que tu choisi difini le mode de difficulte du Jeu, Kage = facile, Jonin = moyen, Genin = difficile, ninja = impossible")
-	fmt.Println("ecrit moi ton class(difficulté du jeu) :")	
+	fmt.Println("================Sélection de votre Classe================")
+	fmt.Println("")	
+	fmt.Println("La classe que tu choisis définit le mode de difficulté du jeu.")
+	fmt.Println("")
+	fmt.Println("Kage = facile")
+	fmt.Println("Jonin = moyen")
+	fmt.Println("Genin = difficile")
+	fmt.Println("ninja = impossible")
+	fmt.Println("")
+	fmt.Println("Écrivez la class de votre choix :")	
 
 	_, err2 := fmt.Scanln(&choix2)
 
 	if err2 != nil {
-		fmt.Println("Erreur de lecture sur le deuxième choix")
+		fmt.Println("Erreur de lecture de votre classe")
 	}
 
 	c1 := tache7101111suite.CharacterCreation(choix, choix2)
 
-	fmt.Println("Voici ton personnage :")
+	fmt.Println("================Character================")
+	fmt.Println("")
+	fmt.Println("Voici les données de votre personnage :")
+	fmt.Println("")
 	personnage.DisplayInfo(c1)
 
-	fmt.Print("Commencons par vous expliquer coment acceder au menu")
-	fmt.Println("il faut ecrire 'menu()' et appuyer sur entrer")
+	fmt.Print("Commençons par vous expliquer les commandes de bases, Écrivez la commande 'menu()' et appuyer sur entrer.")
 	
 
 }
