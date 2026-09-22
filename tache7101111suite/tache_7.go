@@ -37,21 +37,25 @@ func Marchand(c *personnage.Etudiant) {
 			continue
 		}
 
-		
-		if AddInventory(c, item.Nom){
+		if AddInventory(c, item.Nom) {
 			c.Argent -= prix
+			if item.Nom == "Potion de soin" {
+				potionGratuiteUtilisee = true
+				fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
+
+			} else {
+				fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
+			}
+		} else {
+			fmt.Println("Il y'en a déja un autre ne sois pas gourmand")
 		}
-		
-		if item.Nom == "Potion de soin" {
-			potionGratuiteUtilisee = true
-		}
-		fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
+
 	}
 }
 
-func AddInventory(c *personnage.Etudiant, item string) bool{
+func AddInventory(c *personnage.Etudiant, item string) bool {
 	doublon := false
-	if item == "Kunaï" || item == "Rasengan" || item== "upgrade1" || item == "upgrade2"{
+	if item == "Kunaï" || item == "Rasengan" || item == "upgrade1" || item == "upgrade2" {
 
 		for _, v := range c.Inventaire {
 			if v == item {

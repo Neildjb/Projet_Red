@@ -32,12 +32,15 @@ var pieces = map[string]piece{
 }
 
 func Forgeron(c *personnage.Etudiant) {
-	fmt.Println("Je suis le forgeron, je fabrique ton équipement contre 5 euros.")
 
 	for {
 		fmt.Println("\nIl te reste", c.Argent, "pièces d'or. Chaque fabrication coûte", coutFabrication, "pièces.")
 		for i, r := range recettes {
-			fmt.Printf("%d - %s\n", i+1, r.Nom)
+			fmt.Printf("%d - %s il te faudra : ", i+1, r.Nom)
+for ressource, quantite := range r.Ressources {
+    fmt.Printf("%d %s ", quantite, ressource)
+}
+fmt.Println()
 		}
 		fmt.Println("0 - Retour")
 
