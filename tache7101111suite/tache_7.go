@@ -41,11 +41,8 @@ func Marchand(c *personnage.Etudiant) {
 			c.Argent -= prix
 			if item.Nom == "Potion de soin" {
 				potionGratuiteUtilisee = true
-				fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
-
-			} else {
-				fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
 			}
+			fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
 		} else {
 			fmt.Println("Il y'en a déja un autre ne sois pas gourmand")
 		}
@@ -92,6 +89,8 @@ var boutique = []Item{
 	{Nom: "Rasengan", Prix: 75},
 	{Nom: "Potion de soin", Prix: 20},
 	{Nom: "Potion de poison", Prix: 25},
+	{Nom: "Potion de guérison du poison", Prix: 30},
+	{Nom: "Potion de PV total", Prix: 90},
 	{Nom: "upgrade1", Prix: 40},
 	{Nom: "upgrade2", Prix: 80},
 }

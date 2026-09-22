@@ -10,7 +10,7 @@ func TakePot(perso personnage.Etudiant) personnage.Etudiant {
 	position := 0
 
 	for i, item := range perso.Inventaire {
-		if item == "Potion de soin" || item == "potion de vie" {
+		if item == "Potion de soin" {
 			trouve = true
 			position = i
 		}
@@ -78,5 +78,25 @@ func PoisonPot(perso personnage.Etudiant) personnage.Etudiant {
 
 	fmt.Print("a bu une potion de poison ! Ta vie actuelle est de : ", perso.Vie, perso.MaxVie)
 
+	return perso
+}
+
+func FullHealthPot(perso personnage.Etudiant) personnage.Etudiant {
+	position := -1
+	for i, item := range perso.Inventaire {
+		if item == "Potion de PV total" {
+			position = i
+			break
+		}
+	}
+
+	if position == -1 {
+		fmt.Println("Pas de potion de PV total dans l'inventaire !")
+		return perso
+	}
+
+	perso.Inventaire = append(perso.Inventaire[:position], perso.Inventaire[position+1:]...)
+	perso.Vie = perso.MaxVie
+	fmt.Println("Potion de PV total utilisée. Vie actuelle :", perso.Vie, "/", perso.MaxVie)
 	return perso
 }

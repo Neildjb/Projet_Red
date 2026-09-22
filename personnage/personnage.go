@@ -1,6 +1,9 @@
 package personnage
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type Etudiant struct {
 	Nom                string
@@ -13,6 +16,9 @@ type Etudiant struct {
 	Argent             int
 	Equipement         Equipment
 	Skills             []string
+	Poison             bool
+	Hardcore           bool
+	GameOver           bool
 }
 
 type Equipment struct {
@@ -41,14 +47,14 @@ func DisplayInfo(c Etudiant) {
 	fmt.Println("Classe :", c.Classe)
 	fmt.Println("Expérience de combat :", c.ExperienceCombat)
 	fmt.Println("Vie :", c.Vie, "/", c.MaxVie)
-	fmt.Println("Inventaire :", c.Inventaire)
+	fmt.Println("Inventaire :", strings.Join(c.Inventaire, ", "))
 	fmt.Println("Capacité inventaire :", len(c.Inventaire), "/", c.CapaciteInventaire)
 	fmt.Println("Argent :", c.Argent)
 	fmt.Println("Équipement :")
 	fmt.Println("  Tête :", c.Equipement.Headgear)
 	fmt.Println("  Corps :", c.Equipement.BodyArmor)
 	fmt.Println("  Pieds :", c.Equipement.FeetArmor)
-	fmt.Println("Compétences :", c.Skills)
+	fmt.Println("Compétences :", strings.Join(c.Skills, ", "))
 }
 
 func AjouterItem(c *Etudiant, item string) {
@@ -68,6 +74,7 @@ type Monster struct {
 	ArgentDrop     int
 	ExperienceDrop int
 	Trophee        string
+	Poison         bool
 }
 
 func Init_Maxime() Monster {

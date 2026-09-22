@@ -59,12 +59,17 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		vie = maxVie
 	}
 
-	if classe == "ninja" {
+	if classe == "Ninja" {
 		maxVie = 50
 		vie = maxVie
 	}
 
-	if classe == "ADMIN" {
+	if classe == "Naruto Prime" {
+		maxVie = 30
+		vie = maxVie
+	}
+
+	if classe == "Admin4416" {
 		return personnage.InitCharacter(
 			nom,
 			classe,
@@ -72,7 +77,7 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 			10000,
 			10000,
 			1000000,
-			[]string{"Potion de soin", "Potion de soin", "Potion de poison", "Potion de poison", "upgrade1", "upgrade2"},
+			[]string{"Potion de soin", "Potion de poison", "Potion de guérison du poison", "Potion de PV total", "upgrade1", "upgrade2", "Trophee en or"},
 			personnage.Equipment{
 				Headgear:  "bandeau frontale ninja",
 				BodyArmor: "Manteau Akatsuki",
@@ -82,7 +87,7 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		)
 	}
 
-	return personnage.InitCharacter(
+	personnageCree := personnage.InitCharacter(
 		nom,
 		classe,
 		experienceCombat,
@@ -93,4 +98,6 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		equipement,
 		skills,
 	)
+	personnageCree.Hardcore = classe == "Naruto Prime"
+	return personnageCree
 }

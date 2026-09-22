@@ -128,29 +128,6 @@ func Equiper(c *personnage.Etudiant, nom string) {
 	fmt.Println(nom, "équipé ! Vie maximum :", c.MaxVie)
 }
 
-// MenuEquiper affiche les équipements et laisse choisir
-func MenuEquiper(c *personnage.Etudiant) {
-	for {
-		fmt.Println("\nQuel équipement veux-tu équiper ?")
-		for i, r := range recettes {
-			fmt.Printf("%d - %s (x%d dans l'inventaire)\n", i+1, r.Nom, compter(c, r.Nom))
-		}
-		fmt.Println("0 - Retour")
-
-		var saisie string
-		fmt.Scanln(&saisie)
-		n, err := strconv.Atoi(saisie)
-		if err != nil || n < 0 || n > len(recettes) {
-			fmt.Println("Choix invalide.")
-			continue
-		}
-		if n == 0 {
-			return
-		}
-		Equiper(c, recettes[n-1].Nom)
-	}
-}
-
 func retirerUn(c *personnage.Etudiant, nom string) {
 	for i, obj := range c.Inventaire {
 		if obj == nom {
