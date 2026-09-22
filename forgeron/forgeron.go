@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-const coutFabrication = 5
+const coutFabrication = 20
 
 type Recette struct {
 	Nom        string
@@ -37,10 +37,10 @@ func Forgeron(c *personnage.Etudiant) {
 		fmt.Println("\nIl te reste", c.Argent, "pièces d'or. Chaque fabrication coûte", coutFabrication, "pièces.")
 		for i, r := range recettes {
 			fmt.Printf("%d - %s il te faudra : ", i+1, r.Nom)
-for ressource, quantite := range r.Ressources {
-    fmt.Printf("%d %s ", quantite, ressource)
-}
-fmt.Println()
+			for ressource, quantite := range r.Ressources {
+				fmt.Printf("%d %s ", quantite, ressource)
+			}
+			fmt.Println()
 		}
 		fmt.Println("0 - Retour")
 

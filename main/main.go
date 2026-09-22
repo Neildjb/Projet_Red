@@ -32,6 +32,7 @@ func main() {
 	fmt.Println("Jonin = moyen")
 	fmt.Println("Genin = difficile")
 	fmt.Println("ninja = impossible")
+	fmt.Println("Moderateur = mode de triche")
 	fmt.Println("")
 	fmt.Println("Écrivez la class de votre choix :")	
 
@@ -49,6 +50,4 @@ func main() {
 	fmt.Println("")
 	personnage.DisplayInfo(c1)
 	Menu.Menu(c1)
-
-
 }

@@ -88,11 +88,11 @@ type Item struct {
 }
 
 var boutique = []Item{
-	{Nom: "Kunaï", Prix: 25},
-	{Nom: "Rasengan", Prix: 50},
+	{Nom: "Kunaï", Prix: 30},
+	{Nom: "Rasengan", Prix: 75},
 	{Nom: "Potion de soin", Prix: 20},
-	{Nom: "Potion de poison", Prix: 20},
-	{Nom: "upgrade1", Prix: 20},
+	{Nom: "Potion de poison", Prix: 25},
+	{Nom: "upgrade1", Prix: 40},
 	{Nom: "upgrade2", Prix: 80},
 }
 

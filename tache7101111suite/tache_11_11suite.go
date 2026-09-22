@@ -30,7 +30,6 @@ func Capitalize(s string) string {
 }
 
 func CharacterCreation(nom, classe string) personnage.Etudiant {
-
 	nom = Capitalize(nom)
 
 	experienceCombat := 0
@@ -42,7 +41,8 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		BodyArmor: "rien",
 		FeetArmor: "rien",
 	}
-	argent := 100
+	argent := 50
+	skills := []string{"Coup de poing"}
 
 	if classe == "Kage" {
 		maxVie = 300
@@ -64,8 +64,25 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		vie = maxVie
 	}
 
-	skills := []string{"Coup de poing"}
-	c := personnage.InitCharacter(
+	if classe == "ADMIN" {
+		return personnage.InitCharacter(
+			nom,
+			classe,
+			100,
+			10000,
+			10000,
+			1000000,
+			[]string{"Potion de soin", "Potion de soin", "Potion de poison", "Potion de poison", "upgrade1", "upgrade2"},
+			personnage.Equipment{
+				Headgear:  "bandeau frontale ninja",
+				BodyArmor: "Manteau Akatsuki",
+				FeetArmor: "Bottes de Shinobi",
+			},
+			[]string{"Coup de poing", "Kunaï", "Rasengan", "Sharingan"},
+		)
+	}
+
+	return personnage.InitCharacter(
 		nom,
 		classe,
 		experienceCombat,
@@ -76,6 +93,4 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		equipement,
 		skills,
 	)
-
-	return c
 }
