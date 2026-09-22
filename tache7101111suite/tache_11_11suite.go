@@ -33,7 +33,7 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 
 	nom = Capitalize(nom)
 
-	niveau := 1
+	experienceCombat := 0
 	maxVie := 0
 	vie := 0
 	inventaire := []string{}
@@ -68,7 +68,7 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 	c := personnage.InitCharacter(
 		nom,
 		classe,
-		niveau,
+		experienceCombat,
 		maxVie,
 		vie,
 		argent,
