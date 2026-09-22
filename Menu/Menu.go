@@ -4,6 +4,7 @@ import (
 	"Projet_Red/tache7101111suite"
 	"Projet_Red/inventaire"
 	"Projet_Red/personnage"
+	"Projet_Red/forgeron"
 	"fmt"
 
 )
@@ -17,7 +18,8 @@ func Menu(c personnage.Etudiant) {
 		fmt.Println("1 - Afficher les informations du personnage")
 		fmt.Println("2 - Accéder à l'inventaire")
 		fmt.Println("3 - Voir ce que vend le Marchand")
-		fmt.Println("4 - Quitter")
+		fmt.Println("4 - Voir ce que vend le Forgeron")
+		fmt.Println("5 - Quitter")
 
 		var choix string
 		fmt.Scanln(&choix)
@@ -31,6 +33,8 @@ func Menu(c personnage.Etudiant) {
 		case "3":
 			tache7101111suite.Marchand(&c)
 		case "4":
+			forgeron.Forgeron(&c)
+		case "5":
 			continuer = false
 		default:
 			fmt.Println("Choix invalide, réessaie.")
