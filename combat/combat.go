@@ -76,33 +76,7 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 
 	for joueur.Vie > 0 && monstre.Vie > 0 {
 		displayCombatStatus(monstre, joueur)
-		fmt.Println("\nChoisissez une attaque :")
-		for numero, skill := range joueur.Skills {
-			fmt.Printf("%d - %s (%d dégâts)\n", numero+1, skill, degatsAttaque(skill))
-		}
-
-		if len(joueur.Skills) == 0 {
-			fmt.Println("Vous n'avez aucune attaque.")
-			return false
-		}
-
-		var choix int
-		for choix < 1 || choix > len(joueur.Skills) {
-			fmt.Scan(&choix)
-			if choix < 1 || choix > len(joueur.Skills) {
-				fmt.Println("Choix invalide, choisissez un numéro dans la liste.")
-			}
-		}
-
-		attaque := joueur.Skills[choix-1]
-		degats := degatsAttaque(attaque)
-		monstre.Vie -= degats
-		if monstre.Vie < 0 {
-			monstre.Vie = 0
-		}
-		fmt.Println(joueur.Nom, "utilise", attaque, "et inflige", degats, "dégâts à", monstre.Nom)
-
-		if monstre.Vie == 0 {
+		if !characterTurn(joueur, monstre) {
 			fmt.Println(monstre.Nom, "est vaincu !")
 			collectMonsterDrop(monstre, joueur)
 			collectMonsterTrophy(monstre, joueur)
@@ -167,8 +141,12 @@ func inventoryTurn(joueur *personnage.Etudiant) bool {
 	switch objet {
 	case "Potion de soin", "potion de vie":
 		*joueur = potions.TakePot(*joueur)
+		fmt.Println("Vie de", joueur.Nom, ":", joueur.Vie, "/", joueur.MaxVie)
+		return true
 	case "Potion de poison":
 		*joueur = potions.PoisonPot(*joueur)
+		fmt.Println("Vie de", joueur.Nom, ":", joueur.Vie, "/", joueur.MaxVie)
+		return true
 	case "Kunaï":
 		return spellbook.UseSpellBook(joueur)
 	case "Shuriken":
@@ -178,9 +156,6 @@ func inventoryTurn(joueur *personnage.Etudiant) bool {
 		return false
 	}
 
-	joueur.Inventaire = append(joueur.Inventaire[:index], joueur.Inventaire[index+1:]...)
-	fmt.Println("Vie de", joueur.Nom, ":", joueur.Vie, "/", joueur.MaxVie)
-	return true
 }
 
 func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) bool {
