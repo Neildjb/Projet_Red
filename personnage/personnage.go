@@ -107,7 +107,7 @@ func Init_Golems_de_chakra() Monster {
 		Vie:            80,
 		Points_attaque: 15,
 		Drop:           []string{"chakra"},
-		ArgentDrop:     30,
+		ArgentDrop:     45,
 		ExperienceDrop: 1,
 	}
 }
@@ -119,7 +119,7 @@ func Init_Demon_a_queue() Monster {
 		Vie:            100,
 		Points_attaque: 25,
 		Drop:           []string{"queue de demon"},
-		ArgentDrop:     40,
+		ArgentDrop:     50,
 		ExperienceDrop: 2,
 	}
 }

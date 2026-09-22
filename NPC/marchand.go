@@ -39,8 +39,11 @@ func Marchand(c *personnage.Etudiant) {
 
 		if AddInventory(c, item.Nom) {
 			c.Argent -= prix
-			if item.Nom == "Potion de soin" {
-				potionGratuiteUtilisee = true
+			switch item.Nom {
+			case "Potion de soin":
+				nombrePotionsSoin++
+			case "Potion de poison":
+				nombrePotionsPoison++
 			}
 			fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
 		} else {
@@ -95,11 +98,27 @@ var boutique = []Item{
 	{Nom: "upgrade2", Prix: 80},
 }
 
-var potionGratuiteUtilisee = false
+var nombrePotionsSoin int
+var nombrePotionsPoison int
 
 func prixActuel(it Item) int {
-	if it.Nom == "Potion de soin" && !potionGratuiteUtilisee {
-		return 0
+	switch it.Nom {
+	case "Potion de soin":
+		switch {
+		case nombrePotionsSoin == 0:
+			return 0
+		case nombrePotionsSoin == 1:
+			return 10
+		case nombrePotionsSoin <= 3:
+			return 15
+		default:
+			return 20
+		}
+	case "Potion de poison":
+		if nombrePotionsPoison == 0 {
+			return 15
+		}
+		return 25
 	}
 	return it.Prix
 }

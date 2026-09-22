@@ -38,7 +38,7 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		BodyArmor: "rien",
 		FeetArmor: "rien",
 	}
-	argent := 50
+	argent := 65
 	skills := []string{"Coup de poing"}
 
 	if classe == "Kage" {
@@ -61,7 +61,7 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		vie = maxVie
 	}
 
-	if classe == "Naruto Prime" {
+	if classe == "Naruto_Prime" {
 		maxVie = 30
 		vie = maxVie
 	}
@@ -95,6 +95,6 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 		equipement,
 		skills,
 	)
-	personnageCree.Hardcore = classe == "Naruto Prime"
+	personnageCree.Hardcore = classe == "Naruto_Prime"
 	return personnageCree
 }

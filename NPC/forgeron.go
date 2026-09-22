@@ -112,11 +112,13 @@ func Equiper(c *personnage.Etudiant, nom string) {
 	ancien := *emplacement
 	if ancien != "" && ancien != "rien" {
 		c.MaxVie -= pieces[ancien].Bonus
+		c.Vie -= pieces[ancien].Bonus
 		AddInventory(c, ancien)
 	}
 
 	*emplacement = nom
 	c.MaxVie += p.Bonus
+	c.Vie += p.Bonus
 	if c.Vie > c.MaxVie {
 		c.Vie = c.MaxVie
 	}

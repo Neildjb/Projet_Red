@@ -1,7 +1,7 @@
 package menu
 
 import (
-	"Projet_Red/NPC"
+	npc "Projet_Red/NPC"
 	"Projet_Red/combat"
 	"Projet_Red/inventaire"
 	"Projet_Red/personnage"
@@ -12,7 +12,9 @@ func Menu(c personnage.Etudiant) {
 	continuer := true
 
 	for continuer {
-		fmt.Println("=======MENU=======")
+		fmt.Println("\n========================================")
+		fmt.Println("                  MENU")
+		fmt.Println("========================================")
 		fmt.Println("1 - Afficher les informations du personnage")
 		fmt.Println("2 - Accéder à l'inventaire")
 		fmt.Println("3 - Voir ce que vend le Marchand")
@@ -22,37 +24,47 @@ func Menu(c personnage.Etudiant) {
 		fmt.Println("7 - École des classes")
 		fmt.Println("8 - Quêtes")
 		fmt.Println("9 - Quitter")
+		fmt.Println("\nChoisis une action :")
 
 		var choix string
 		fmt.Scan(&choix)
 
 		switch choix {
 		case "1":
+			fmt.Println("\n--- Informations du personnage ---")
 			personnage.DisplayInfo(c)
 		case "2":
+			fmt.Println("\n--- Inventaire ---")
 			inventaire.AccessInventory(&c)
 		case "3":
+			fmt.Println("\n--- Marchand ---")
 			npc.Marchand(&c)
 		case "4":
+			fmt.Println("\n--- Forgeron ---")
 			npc.Forgeron(&c)
 		case "5":
+			fmt.Println("\n--- Tutoriel de combat ---")
 			combat.TrainingFight(&c)
 			if c.GameOver {
 				return
 			}
 		case "6":
+			fmt.Println("\n--- Arène de combat ---")
 			arenaMenu(&c)
 			if c.GameOver {
 				return
 			}
 		case "7":
+			fmt.Println("\n--- École des classes ---")
 			ecole(&c)
 			if c.GameOver {
 				return
 			}
 		case "8":
+			fmt.Println("\n--- Quêtes ---")
 			quetesFinJeu(c)
 		case "9":
+			fmt.Println("\nÀ bientôt, shinobi !")
 			continuer = false
 		default:
 			fmt.Println("Choix invalide, réessaie.")
@@ -189,7 +201,7 @@ func possedeObjet(joueur personnage.Etudiant, objetRecherche string) bool {
 }
 
 func ecole(joueur *personnage.Etudiant) {
-	const prixEntree = 100
+	const prixEntree = 80
 
 	fmt.Println("\n=== École des classes ===")
 	fmt.Println("Si tu te trouves trop faible, tu peux tenter de changer pour la classe suivante.")
@@ -200,7 +212,7 @@ func ecole(joueur *personnage.Etudiant) {
 	var maxVie int
 
 	switch joueur.Classe {
-	case "Naruto Prime":
+	case "Naruto_Prime":
 		nouvelleClasse = "Ninja"
 		monstre = personnage.Init_Maxime()
 		maxVie = 50
