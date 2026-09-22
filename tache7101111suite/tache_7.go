@@ -37,8 +37,11 @@ func Marchand(c *personnage.Etudiant) {
 			continue
 		}
 
-		c.Argent -= prix
-		AddInventory(c, item.Nom)
+		
+		if AddInventory(c, item.Nom){
+			c.Argent -= prix
+		}
+		
 		if item.Nom == "Potion de soin" {
 			potionGratuiteUtilisee = true
 		}
@@ -46,8 +49,23 @@ func Marchand(c *personnage.Etudiant) {
 	}
 }
 
-func AddInventory(c *personnage.Etudiant, item string) {
+func AddInventory(c *personnage.Etudiant, item string) bool{
+	doublon := false
+	if item == "Kunaï" || item == "Rasengan" || item== "upgrade1" || item == "upgrade2"{
+
+		for _, v := range c.Inventaire {
+			if v == item {
+				doublon = true
+				fmt.Println("Il y'en a déja un autre ne sois pas gourmand")
+			}
+			if doublon {
+				return false
+			}
+		}
+	}
+
 	c.Inventaire = append(c.Inventaire, item)
+	return true
 }
 
 func RemoveInventory(c *personnage.Etudiant, item string) {
@@ -69,6 +87,9 @@ var boutique = []Item{
 	{Nom: "Kunaï", Prix: 25},
 	{Nom: "Rasengan", Prix: 50},
 	{Nom: "Potion de soin", Prix: 20},
+	{Nom: "Potion de poison", Prix: 20},
+	{Nom: "upgrade1", Prix: 20},
+	{Nom: "upgrade2", Prix: 80},
 }
 
 var potionGratuiteUtilisee = false

@@ -21,24 +21,25 @@ func AccessInventory(e personnage.Etudiant) {
 		for i, r := range e.Inventaire {
 			println(strconv.Itoa(i+1) + ": " + r)
 		}
+		
 		for {
 			var choix_sup string
-			fmt.Scanln(choix_sup)
+			fmt.Scanln(&choix_sup)
 			n, err := strconv.Atoi(choix_sup)
-			if err != nil || n < 0 || n > len(choix_sup) {
+			if err != nil || n < 0 || n > len(e.Inventaire) {
 				fmt.Println("Ce n'est pas au menu, gamin.")
 				continue
 
 			} else {
 
-				for i := 0; i < len(e.Inventaire); i++ {
-					if e.Inventaire[i] == e.Inventaire[n-1] {
-						tache7101111suite.RemoveInventory(&e, e.Inventaire[i])
-
-					}
+					
+				fmt.Println("Je vais retirer "+e.Inventaire[n-1] + " de l'inventaire" )
+				tache7101111suite.RemoveInventory(&e, e.Inventaire[n-1])
+				fmt.Println(e.Inventaire)
+				return
 				}
 
-			}
+			
 
 		}
 
