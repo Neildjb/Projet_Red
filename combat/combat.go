@@ -13,12 +13,8 @@ func degatsAttaque(attaque string) int {
 	switch strings.ToLower(strings.TrimSpace(attaque)) {
 	case "coup de poing":
 		return 10
-	case "sort du kunaï":
-		return 20
-	case "attaque de destruction":
-		return 100
 	default:
-		return 0
+		return spellbook.SpellDamage(attaque)
 	}
 }
 
@@ -148,9 +144,11 @@ func inventoryTurn(joueur *personnage.Etudiant) bool {
 		fmt.Println("Vie de", joueur.Nom, ":", joueur.Vie, "/", joueur.MaxVie)
 		return true
 	case "Kunaï":
-		return spellbook.UseSpellBook(joueur)
-	case "Shuriken":
-		return spellbook.UseShuriken(joueur)
+		return spellbook.LearnSpell(joueur, objet, "Kunaï")
+	case "Rasengan":
+		return spellbook.LearnSpell(joueur, objet, "Rasengan")
+	case "Sharingan":
+		return spellbook.LearnSpell(joueur, objet, "Sharingan")
 	default:
 		fmt.Println("L'objet", objet, "ne peut pas être utilisé pendant le combat.")
 		return false

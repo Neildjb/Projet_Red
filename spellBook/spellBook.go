@@ -5,62 +5,51 @@ import (
 	"fmt"
 )
 
-const spellbookName = "Kunaï"
-const spellbookSpell = "Sort du Kunaï"
+// Ajoute ici les trois sorts que le joueur pourra apprendre.
+var spellbook = []string{"Kunaï", "Rasengan", "Sharingan"}
 
-func UseSpellBook(joueur *personnage.Etudiant) bool {
+func LearnSpell(joueur *personnage.Etudiant, objet, sort string) bool {
+	if !containsSpell(sort) {
+		fmt.Println("Ce sort n'est pas disponible dans le Spellbook.")
+		return false
+	}
+
 	position := -1
-	for i, objet := range joueur.Inventaire {
-		if objet == spellbookName {
+	for i, objetPossede := range joueur.Inventaire {
+		if objetPossede == objet {
 			position = i
 			break
 		}
 	}
 	if position == -1 {
-		fmt.Println("Vous n'avez pas de Kunaï dans votre inventaire.")
+		fmt.Println("Vous n'avez pas de", objet, "dans votre inventaire.")
 		return false
 	}
 
-	for _, sort := range joueur.Skills {
-		if sort == spellbookSpell {
-			fmt.Println("Vous connaissez déjà le sort du Kunaï.")
-			return false
-		}
-	}
-
 	joueur.Inventaire = append(joueur.Inventaire[:position], joueur.Inventaire[position+1:]...)
-	joueur.Skills = append(joueur.Skills, spellbookSpell)
-	joueur.Vie -= 5
-	if joueur.Vie < 0 {
-		joueur.Vie = 0
-	}
-	fmt.Println("Vous apprenez", spellbookSpell, "et perdez 5 PV.")
+	joueur.Skills = append(joueur.Skills, sort)
+	fmt.Println("Vous apprenez", sort, ".")
 	return true
 }
 
-func UseShuriken(joueur *personnage.Etudiant) bool {
-	position := -1
-	for i, objet := range joueur.Inventaire {
-		if objet == "Shuriken" {
-			position = i
-			break
+func containsSpell(sort string) bool {
+	for _, sortDisponible := range spellbook {
+		if sortDisponible == sort {
+			return true
 		}
 	}
-	if position == -1 {
-		fmt.Println("Vous n'avez pas de Shuriken dans votre inventaire.")
-		return false
-	}
+	return false
+}
 
-	const sortDestruction = "Attaque de destruction"
-	for _, sort := range joueur.Skills {
-		if sort == sortDestruction {
-			fmt.Println("Vous connaissez déjà", sortDestruction, ".")
-			return false
-		}
+func SpellDamage(sort string) int {
+	switch sort {
+	case "Kunaï":
+		return 20
+	case "Rasengan":
+		return 35
+	case "Sharingan":
+		return 100
+	default:
+		return 0
 	}
-
-	joueur.Inventaire = append(joueur.Inventaire[:position], joueur.Inventaire[position+1:]...)
-	joueur.Skills = append(joueur.Skills, sortDestruction)
-	fmt.Println("Vous découvrez", sortDestruction, ": 100 dégâts.")
-	return true
 }
