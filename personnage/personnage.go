@@ -65,6 +65,9 @@ type Monster struct {
 	Vie            int
 	Points_attaque int
 	Drop           string
+	ArgentDrop     int
+	ExperienceDrop int
+	Trophee        string
 }
 
 func Init_Maxime() Monster {
@@ -74,6 +77,8 @@ func Init_Maxime() Monster {
 		Vie:            40,
 		Points_attaque: 10,
 		Drop:           "Baton de bois",
+		ArgentDrop:     5,
+		ExperienceDrop: 1,
 	}
 }
 
@@ -84,6 +89,8 @@ func Init_Ninjas_déserteurs() Monster {
 		Vie:            60,
 		Points_attaque: 15,
 		Drop:           "fer",
+		ArgentDrop:     10,
+		ExperienceDrop: 1,
 	}
 }
 
@@ -94,6 +101,8 @@ func Init_Golems_de_chakra() Monster {
 		Vie:            80,
 		Points_attaque: 15,
 		Drop:           "chakra",
+		ArgentDrop:     20,
+		ExperienceDrop: 1,
 	}
 }
 
@@ -104,6 +113,8 @@ func Init_Demon_a_queue() Monster {
 		Vie:            100,
 		Points_attaque: 25,
 		Drop:           "queue de demon",
+		ArgentDrop:     30,
+		ExperienceDrop: 2,
 	}
 }
 
@@ -113,6 +124,9 @@ func Init_Madara() Monster {
 		Max_vie:        150,
 		Vie:            150,
 		Points_attaque: 35,
-		Drop:           "armure detruite",
+		Drop:           "Sharingan",
+		ArgentDrop:     50,
+		ExperienceDrop: 5,
+		Trophee:        "Trophee en or",
 	}
 }

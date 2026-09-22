@@ -39,7 +39,7 @@ func Marchand(c *personnage.Etudiant) {
 
 		c.Argent -= prix
 		AddInventory(c, item.Nom)
-		if item.Nom == "potion de vie" {
+		if item.Nom == "Potion de soin" {
 			potionGratuiteUtilisee = true
 		}
 		fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
@@ -66,18 +66,17 @@ type Item struct {
 }
 
 var boutique = []Item{
-	{Nom: "Kunaï", Prix: 5},
-	{Nom: "Shuriken", Prix: 3},
-	{Nom: "Rasengan", Prix: 10},
-	{Nom: "potion de vie", Prix: 6},
+	{Nom: "Kunaï", Prix: 15},
+	{Nom: "Shuriken", Prix: 25},
+	{Nom: "Rasengan", Prix: 50},
+	{Nom: "Potion de soin", Prix: 20},
 }
-
 
 var potionGratuiteUtilisee = false
 
 // prixActuel donne le prix réel d'un objet à cet instant
 func prixActuel(it Item) int {
-	if it.Nom == "potion de vie" && !potionGratuiteUtilisee {
+	if it.Nom == "Potion de soin" && !potionGratuiteUtilisee {
 		return 0
 	}
 	return it.Prix

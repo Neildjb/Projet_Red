@@ -1,15 +1,16 @@
 package personnage
 
-import "fmt"
 import (
 	"Projet_Red/personnage"
+	"fmt"
 )
-func takePot(perso personnage.Etudiant) personnage.Etudiant {
+
+func TakePot(perso personnage.Etudiant) personnage.Etudiant {
 	trouve := false
 	position := 0
 
 	for i, item := range perso.Inventaire {
-		if item == "Potion de soin" {
+		if item == "Potion de soin" || item == "potion de vie" {
 			trouve = true
 			position = i
 		}
@@ -37,12 +38,12 @@ func takePot(perso personnage.Etudiant) personnage.Etudiant {
 		perso.Vie = perso.MaxVie
 	}
 
-	fmt.Print("a utilisé une potion de soin. Ta vie actuelle est de : ", perso.Vie, perso.MaxVie) 
+	fmt.Print("a utilisé une potion de soin. Ta vie actuelle est de : ", perso.Vie, perso.MaxVie)
 
 	return perso
 }
 
-func poisonPot(perso personnage.Etudiant) personnage.Etudiant {
+func PoisonPot(perso personnage.Etudiant) personnage.Etudiant {
 	trouve := false
 	position := 0
 
@@ -75,7 +76,7 @@ func poisonPot(perso personnage.Etudiant) personnage.Etudiant {
 		perso.Vie = 0
 	}
 
-	fmt.Print("a bu une potion de poison ! Ta vie actuelle est de : ", perso.Vie, perso.MaxVie)           
+	fmt.Print("a bu une potion de poison ! Ta vie actuelle est de : ", perso.Vie, perso.MaxVie)
 
 	return perso
 }

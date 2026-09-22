@@ -2,6 +2,8 @@ package combat
 
 import (
 	"Projet_Red/personnage"
+	spellbook "Projet_Red/spellBook"
+	potions "Projet_Red/tache5_6_9_12"
 	"Projet_Red/tache8"
 	"fmt"
 	"strings"
@@ -11,6 +13,10 @@ func degatsAttaque(attaque string) int {
 	switch strings.ToLower(strings.TrimSpace(attaque)) {
 	case "coup de poing":
 		return 10
+	case "sort du kunaï":
+		return 20
+	case "attaque de destruction":
+		return 100
 	default:
 		return 0
 	}
@@ -31,6 +37,36 @@ func collectMonsterDrop(monstre *personnage.Monster, joueur *personnage.Etudiant
 	if len(joueur.Inventaire) > nombreObjets {
 		fmt.Println("Vous récupérez :", monstre.Drop)
 	}
+}
+
+func collectMonsterTrophy(monstre *personnage.Monster, joueur *personnage.Etudiant) {
+	if monstre.Trophee == "" {
+		return
+	}
+
+	nombreObjets := len(joueur.Inventaire)
+	personnage.AjouterItem(joueur, monstre.Trophee)
+	if len(joueur.Inventaire) > nombreObjets {
+		fmt.Println("Vous récupérez le", monstre.Trophee, ".")
+	} else {
+		fmt.Println("Le trophée ne peut pas être ajouté : inventaire plein.")
+	}
+	fmt.Println("Félicitations ! Vous avez remporté le trophée final !")
+}
+
+func collectMonsterMoney(monstre *personnage.Monster, joueur *personnage.Etudiant) {
+	if monstre.ArgentDrop <= 0 {
+		return
+	}
+
+	joueur.Argent += monstre.ArgentDrop
+	fmt.Println("Vous gagnez", monstre.ArgentDrop, "pièces d'or.")
+	fmt.Println("Argent total :", joueur.Argent, "pièces d'or")
+}
+
+func collectCombatExperience(monstre *personnage.Monster, joueur *personnage.Etudiant) {
+	joueur.ExperienceCombat += monstre.ExperienceDrop
+	fmt.Println("Expérience de combat : +", monstre.ExperienceDrop)
 }
 
 // Combat lance un combat au tour par tour et renvoie true si le joueur gagne.
@@ -69,8 +105,9 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 		if monstre.Vie == 0 {
 			fmt.Println(monstre.Nom, "est vaincu !")
 			collectMonsterDrop(monstre, joueur)
-			joueur.ExperienceCombat++
-			fmt.Println("Expérience de combat : +1")
+			collectMonsterTrophy(monstre, joueur)
+			collectMonsterMoney(monstre, joueur)
+			collectCombatExperience(monstre, joueur)
 			return true
 		}
 
@@ -128,18 +165,14 @@ func inventoryTurn(joueur *personnage.Etudiant) bool {
 	index := choixObjet - 1
 	objet := joueur.Inventaire[index]
 	switch objet {
-	case "Potion de soin":
-		joueur.Vie += 50
-		if joueur.Vie > joueur.MaxVie {
-			joueur.Vie = joueur.MaxVie
-		}
-		fmt.Println(joueur.Nom, "utilise", objet, "et récupère 50 points de vie.")
+	case "Potion de soin", "potion de vie":
+		*joueur = potions.TakePot(*joueur)
 	case "Potion de poison":
-		joueur.Vie -= 20
-		if joueur.Vie < 0 {
-			joueur.Vie = 0
-		}
-		fmt.Println(joueur.Nom, "utilise", objet, "et perd 20 points de vie.")
+		*joueur = potions.PoisonPot(*joueur)
+	case "Kunaï":
+		return spellbook.UseSpellBook(joueur)
+	case "Shuriken":
+		return spellbook.UseShuriken(joueur)
 	default:
 		fmt.Println("L'objet", objet, "ne peut pas être utilisé pendant le combat.")
 		return false
@@ -209,8 +242,8 @@ func trainingFight(joueur *personnage.Etudiant) bool {
 		if !characterTurn(joueur, &monstre) {
 			fmt.Println(monstre.Nom, "est vaincu !")
 			collectMonsterDrop(&monstre, joueur)
-			joueur.ExperienceCombat++
-			fmt.Println("Expérience de combat : +1")
+			collectMonsterMoney(&monstre, joueur)
+			collectCombatExperience(&monstre, joueur)
 			return true
 		}
 

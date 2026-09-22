@@ -15,9 +15,9 @@ type Recette struct {
 }
 
 var recettes = []Recette{
-	{Nom: "bandeau frontale ninja", Ressources: map[string]int{"Plume de Corbeau": 1}},
-	{Nom: "Manteau Akatsuki", Ressources: map[string]int{"laine": 1}},
-	{Nom: "Bottes de Shinobi", Ressources: map[string]int{"patte de Lapin": 1}},
+	{Nom: "bandeau frontale ninja", Ressources: map[string]int{"Baton de bois": 1}},
+	{Nom: "Manteau Akatsuki", Ressources: map[string]int{"fer": 2}},
+	{Nom: "Bottes de Shinobi", Ressources: map[string]int{"queue de demon": 3}},
 }
 
 type piece struct {
@@ -26,9 +26,9 @@ type piece struct {
 }
 
 var pieces = map[string]piece{
-	"bandeau frontale ninja": {Slot: "tete", Bonus: 10},
-	"Manteau Akatsuki":       {Slot: "torse", Bonus: 25},
-	"Bottes de Shinobi":      {Slot: "pieds", Bonus: 15},
+	"bandeau frontale ninja": {Slot: "tete", Bonus: 15},
+	"Manteau Akatsuki":       {Slot: "torse", Bonus: 20},
+	"Bottes de Shinobi":      {Slot: "pieds", Bonus: 25},
 }
 
 func Forgeron(c *personnage.Etudiant) {
@@ -98,17 +98,21 @@ func Equiper(c *personnage.Etudiant, nom string) {
 
 	var emplacement *string
 	switch p.Slot {
-	case "Headgear":
+	case "tete":
 		emplacement = &c.Equipement.Headgear
-	case "BodyArmor":
+	case "torse":
 		emplacement = &c.Equipement.BodyArmor
-	case "FettArmor":
+	case "pieds":
 		emplacement = &c.Equipement.FeetArmor
+	}
+	if emplacement == nil {
+		fmt.Println("Emplacement d'équipement invalide.")
+		return
 	}
 
 	retirerUn(c, nom)
 	ancien := *emplacement
-	if ancien != "" {
+	if ancien != "" && ancien != "rien" {
 		c.MaxVie -= pieces[ancien].Bonus
 		tache7101111suite.AddInventory(c, ancien)
 	}
