@@ -21,8 +21,6 @@ type Equipment struct {
 	FeetArmor string
 }
 
-
-
 func InitCharacter(nom, classe string, niveau, maxVie, vie, argent int, inventaire []string, equipement Equipment, skills []string) Etudiant {
 	return Etudiant{
 		Nom:                nom,
@@ -37,8 +35,6 @@ func InitCharacter(nom, classe string, niveau, maxVie, vie, argent int, inventai
 		Skills:             skills,
 	}
 }
-
-
 
 func DisplayInfo(c Etudiant) {
 	fmt.Println("Nom :", c.Nom)
@@ -68,7 +64,7 @@ type Monster struct {
 	Max_vie        int
 	Vie            int
 	Points_attaque int
-	drop		   string
+	Drop           string
 }
 
 func Init_Maxime() Monster {
@@ -77,7 +73,7 @@ func Init_Maxime() Monster {
 		Max_vie:        40,
 		Vie:            40,
 		Points_attaque: 10,
-		drop:           "Baton de bois",
+		Drop:           "Baton de bois",
 	}
 }
 
@@ -87,7 +83,7 @@ func Init_Ninjas_déserteurs() Monster {
 		Max_vie:        60,
 		Vie:            60,
 		Points_attaque: 15,
-		drop:           "fer",
+		Drop:           "fer",
 	}
 }
 
@@ -97,7 +93,7 @@ func Init_Golems_de_chakra() Monster {
 		Max_vie:        80,
 		Vie:            80,
 		Points_attaque: 15,
-		drop:           "chakra",
+		Drop:           "chakra",
 	}
 }
 
@@ -107,7 +103,7 @@ func Init_Demon_a_queue() Monster {
 		Max_vie:        100,
 		Vie:            100,
 		Points_attaque: 25,
-		drop:           "queue de demon",
+		Drop:           "queue de demon",
 	}
 }
 
@@ -117,6 +113,6 @@ func Init_Madara() Monster {
 		Max_vie:        150,
 		Vie:            150,
 		Points_attaque: 35,
-		drop:           "armure detruite",
+		Drop:           "armure detruite",
 	}
 }
