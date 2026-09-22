@@ -1,9 +1,13 @@
 package main
 
 import (
+	"Projet_Red/Menu"
+	
+	"Projet_Red/inventaire"
 	"Projet_Red/personnage"
-	"fmt"
 	"Projet_Red/tache7101111suite"
+	"fmt"
+	"strconv"
 )
 
 func main() {
@@ -47,8 +51,7 @@ func main() {
 	fmt.Println("Voici les données de votre personnage :")
 	fmt.Println("")
 	personnage.DisplayInfo(c1)
+	Menu.Menu(c1)
 
-	fmt.Print("Commençons par vous expliquer les commandes de bases, Écrivez la commande 'menu()' et appuyer sur entrer.")
-	
 
 }
