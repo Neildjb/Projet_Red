@@ -49,6 +49,8 @@ func SpellDamage(sort string) int {
 		return 35
 	case "Sharingan":
 		return 100
+	case "coup de pied":
+		return 10
 	default:
 		return 0
 	}
