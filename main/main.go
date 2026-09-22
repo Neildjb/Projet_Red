@@ -2,12 +2,9 @@ package main
 
 import (
 	"Projet_Red/Menu"
-	
-	"Projet_Red/inventaire"
 	"Projet_Red/personnage"
 	"Projet_Red/tache7101111suite"
 	"fmt"
-	"strconv"
 )
 
 func main() {
