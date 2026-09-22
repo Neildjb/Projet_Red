@@ -98,16 +98,15 @@ func Equiper(c *personnage.Etudiant, nom string) {
 
 	var emplacement *string
 	switch p.Slot {
-	case "tete":
+	case "Headgear":
 		emplacement = &c.Equipement.Headgear
-	case "torse":
+	case "BodyArmor":
 		emplacement = &c.Equipement.BodyArmor
-	case "pieds":
+	case "FettArmor":
 		emplacement = &c.Equipement.FeetArmor
 	}
 
 	retirerUn(c, nom)
-
 	ancien := *emplacement
 	if ancien != "" {
 		c.MaxVie -= pieces[ancien].Bonus

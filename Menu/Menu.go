@@ -34,8 +34,14 @@ func Menu(c personnage.Etudiant) {
 		case "4":
 			forgeron.Forgeron(&c)
 		case "5":
-			combat.TrainingFight(&c)
+			var nomObjet string
+			fmt.Println("Quel objet veux-tu équiper ?")
+			fmt.Scanln(&nomObjet)
+			inventaire.AccessInventory(c)
+			forgeron.Equiper(&c, nomObjet)
 		case "6":
+			combat.TrainingFight(&c)
+		case "7":
 			continuer = false
 		default:
 			fmt.Println("Choix invalide, réessaie.")
