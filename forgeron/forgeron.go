@@ -32,7 +32,7 @@ var pieces = map[string]piece{
 }
 
 func Forgeron(c *personnage.Etudiant) {
-	fmt.Println("Je suis le forgeron, je fabrique ton équipement contre des ressources.")
+	fmt.Println("Je suis le forgeron, je fabrique ton équipement contre 5 euros.")
 
 	for {
 		fmt.Println("\nIl te reste", c.Argent, "pièces d'or. Chaque fabrication coûte", coutFabrication, "pièces.")
