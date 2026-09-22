@@ -69,6 +69,8 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 		if monstre.Vie == 0 {
 			fmt.Println(monstre.Nom, "est vaincu !")
 			collectMonsterDrop(monstre, joueur)
+			joueur.ExperienceCombat++
+			fmt.Println("Expérience de combat : +1")
 			return true
 		}
 
@@ -207,6 +209,8 @@ func trainingFight(joueur *personnage.Etudiant) bool {
 		if !characterTurn(joueur, &monstre) {
 			fmt.Println(monstre.Nom, "est vaincu !")
 			collectMonsterDrop(&monstre, joueur)
+			joueur.ExperienceCombat++
+			fmt.Println("Expérience de combat : +1")
 			return true
 		}
 

@@ -5,7 +5,7 @@ import "fmt"
 type Etudiant struct {
 	Nom                string
 	Classe             string
-	Niveau             int
+	ExperienceCombat   int
 	MaxVie             int
 	Vie                int
 	Inventaire         []string
@@ -21,11 +21,11 @@ type Equipment struct {
 	FeetArmor string
 }
 
-func InitCharacter(nom, classe string, niveau, maxVie, vie, argent int, inventaire []string, equipement Equipment, skills []string) Etudiant {
+func InitCharacter(nom, classe string, experienceCombat, maxVie, vie, argent int, inventaire []string, equipement Equipment, skills []string) Etudiant {
 	return Etudiant{
 		Nom:                nom,
 		Classe:             classe,
-		Niveau:             niveau,
+		ExperienceCombat:   experienceCombat,
 		MaxVie:             maxVie,
 		Vie:                vie,
 		Inventaire:         inventaire,
@@ -39,7 +39,7 @@ func InitCharacter(nom, classe string, niveau, maxVie, vie, argent int, inventai
 func DisplayInfo(c Etudiant) {
 	fmt.Println("Nom :", c.Nom)
 	fmt.Println("Classe :", c.Classe)
-	fmt.Println("Niveau :", c.Niveau)
+	fmt.Println("Expérience de combat :", c.ExperienceCombat)
 	fmt.Println("Vie :", c.Vie, "/", c.MaxVie)
 	fmt.Println("Inventaire :", c.Inventaire)
 	fmt.Println("Capacité inventaire :", len(c.Inventaire), "/", c.CapaciteInventaire)
