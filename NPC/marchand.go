@@ -97,7 +97,6 @@ var boutique = []Item{
 
 var potionGratuiteUtilisee = false
 
-// prixActuel donne le prix réel d'un objet à cet instant
 func prixActuel(it Item) int {
 	if it.Nom == "Potion de soin" && !potionGratuiteUtilisee {
 		return 0

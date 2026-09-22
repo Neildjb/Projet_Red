@@ -13,7 +13,7 @@ func Isdead(e *personnage.Etudiant) {
 			return
 		}
 		fmt.Println("tu es mort mais tout le monde a le droit à une seconde chance")
-		e.Vie = 50
+		e.Vie = e.MaxVie
 		fmt.Println("tu es  revivant")
 	}
 }

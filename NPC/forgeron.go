@@ -10,7 +10,7 @@ const coutFabrication = 20
 
 type Recette struct {
 	Nom        string
-	Ressources map[string]int // nom de la ressource -> quantité
+	Ressources map[string]int
 }
 
 var recettes = []Recette{
@@ -56,13 +56,11 @@ func Forgeron(c *personnage.Etudiant) {
 		}
 		r := recettes[n-1]
 
-		// 1. assez d'argent ?
 		if c.Argent < coutFabrication {
 			fmt.Println("Sale pauvre t'as même pas assez, il me faudrait", coutFabrication, "pièces d'or.")
 			continue
 		}
 
-		// 2. assez de ressources ?
 		manque := false
 		for nom, qte := range r.Ressources {
 			if possede := compter(c, nom); possede < qte {
@@ -74,7 +72,6 @@ func Forgeron(c *personnage.Etudiant) {
 			continue
 		}
 
-		// 3. tout est bon : on applique
 		c.Argent -= coutFabrication
 		for nom, qte := range r.Ressources {
 			for k := 0; k < qte; k++ {
@@ -86,7 +83,6 @@ func Forgeron(c *personnage.Etudiant) {
 	}
 }
 
-// Equiper équipe un objet de l'inventaire
 func Equiper(c *personnage.Etudiant, nom string) {
 	p, ok := pieces[nom]
 	if !ok {

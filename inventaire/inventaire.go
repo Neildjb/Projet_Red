@@ -1,7 +1,7 @@
 package inventaire
 
 import (
-	npc "Projet_Red/NPC"
+	"Projet_Red/NPC"
 	"Projet_Red/amelioration"
 	"Projet_Red/personnage"
 	"Projet_Red/potions"

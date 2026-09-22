@@ -6,17 +6,7 @@ import (
 	"Projet_Red/potions"
 	"Projet_Red/sorts"
 	"fmt"
-	"strings"
 )
-
-func degatsAttaque(attaque string) int {
-	switch strings.ToLower(strings.TrimSpace(attaque)) {
-	case "coup de poing":
-		return 10
-	default:
-		return sorts.SpellDamage(attaque)
-	}
-}
 
 func displayCombatStatus(monstre *personnage.Monster, joueur *personnage.Etudiant) {
 	fmt.Println("Vie de", joueur.Nom, ":", joueur.Vie, "/", joueur.MaxVie)
@@ -24,30 +14,13 @@ func displayCombatStatus(monstre *personnage.Monster, joueur *personnage.Etudian
 }
 
 func collectMonsterDrop(monstre *personnage.Monster, joueur *personnage.Etudiant) {
-	if monstre.Drop == "" {
-		return
+	for _, drop := range monstre.Drop {
+		nombreObjets := len(joueur.Inventaire)
+		personnage.AjouterItem(joueur, drop)
+		if len(joueur.Inventaire) > nombreObjets {
+			fmt.Println("Vous récupérez :", drop)
+		}
 	}
-
-	nombreObjets := len(joueur.Inventaire)
-	personnage.AjouterItem(joueur, monstre.Drop)
-	if len(joueur.Inventaire) > nombreObjets {
-		fmt.Println("Vous récupérez :", monstre.Drop)
-	}
-}
-
-func collectMonsterTrophy(monstre *personnage.Monster, joueur *personnage.Etudiant) {
-	if monstre.Trophee == "" {
-		return
-	}
-
-	nombreObjets := len(joueur.Inventaire)
-	personnage.AjouterItem(joueur, monstre.Trophee)
-	if len(joueur.Inventaire) > nombreObjets {
-		fmt.Println("Vous récupérez le", monstre.Trophee, ".")
-	} else {
-		fmt.Println("Le trophée ne peut pas être ajouté : inventaire plein.")
-	}
-	fmt.Println("Félicitations ! Vous avez remporté le trophée final !")
 }
 
 func collectMonsterMoney(monstre *personnage.Monster, joueur *personnage.Etudiant) {
@@ -65,7 +38,6 @@ func collectCombatExperience(monstre *personnage.Monster, joueur *personnage.Etu
 	fmt.Println("Expérience de combat : +", monstre.ExperienceDrop)
 }
 
-// Combat lance un combat au tour par tour et renvoie true si le joueur gagne.
 func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 	tour := 1
 	defer func() {
@@ -103,7 +75,6 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 			if monstre.Vie == 0 {
 				fmt.Println(monstre.Nom, "est vaincu !")
 				collectMonsterDrop(monstre, joueur)
-				collectMonsterTrophy(monstre, joueur)
 				collectMonsterMoney(monstre, joueur)
 				collectCombatExperience(monstre, joueur)
 				return true
@@ -113,7 +84,6 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 		if !characterTurn(joueur, monstre) {
 			fmt.Println(monstre.Nom, "est vaincu !")
 			collectMonsterDrop(monstre, joueur)
-			collectMonsterTrophy(monstre, joueur)
 			collectMonsterMoney(monstre, joueur)
 			collectCombatExperience(monstre, joueur)
 			return true
@@ -130,25 +100,6 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 
 	fmt.Println(joueur.Nom, "a perdu le combat.")
 	return false
-}
-
-func initTrainingMonster() personnage.Monster {
-	return personnage.Init_Maxime()
-}
-
-func monsterPattern(monstre *personnage.Monster, joueur *personnage.Etudiant, tour int) {
-	degats := monstre.Points_attaque
-	if tour%3 == 0 {
-		degats *= 2
-	}
-
-	joueur.Vie -= degats
-	if joueur.Vie < 0 {
-		joueur.Vie = 0
-	}
-
-	fmt.Println(monstre.Nom, "inflige à", joueur.Nom, degats, "de dégâts")
-	fmt.Println("Vie de", joueur.Nom, ":", joueur.Vie, "/", joueur.MaxVie)
 }
 
 func inventoryTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) bool {
@@ -220,7 +171,7 @@ func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) boo
 
 			fmt.Println("\nSorts disponibles :")
 			for numero, sort := range joueur.Skills {
-				fmt.Printf("%d - %-20s %d dégâts\n", numero+1, sort, degatsAttaque(sort))
+				fmt.Printf("%d - %-20s %d dégâts\n", numero+1, sort, sorts.SpellDamage(sort))
 			}
 
 			var choixSort int
@@ -232,7 +183,7 @@ func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) boo
 			}
 
 			sort := joueur.Skills[choixSort-1]
-			degats := degatsAttaque(sort)
+			degats := sorts.SpellDamage(sort)
 			monstre.Vie -= degats
 			if monstre.Vie < 0 {
 				monstre.Vie = 0
@@ -250,48 +201,7 @@ func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) boo
 	}
 }
 
-func trainingFight(joueur *personnage.Etudiant) bool {
-	monstre := initTrainingMonster()
-	tour := 1
-
-	fmt.Println("Un", monstre.Nom, "apparaît !")
-	for joueur.Vie > 0 && monstre.Vie > 0 {
-		fmt.Println("\nTour", tour)
-		if monstre.Poison {
-			monstre.Vie -= 5
-			if monstre.Vie < 0 {
-				monstre.Vie = 0
-			}
-			fmt.Println(monstre.Nom, "perd 5 PV à cause du poison.")
-			if monstre.Vie == 0 {
-				fmt.Println(monstre.Nom, "est vaincu !")
-				collectMonsterDrop(&monstre, joueur)
-				collectMonsterMoney(&monstre, joueur)
-				collectCombatExperience(&monstre, joueur)
-				return true
-			}
-		}
-		displayCombatStatus(&monstre, joueur)
-		if !characterTurn(joueur, &monstre) {
-			fmt.Println(monstre.Nom, "est vaincu !")
-			collectMonsterDrop(&monstre, joueur)
-			collectMonsterMoney(&monstre, joueur)
-			collectCombatExperience(&monstre, joueur)
-			return true
-		}
-
-		monsterPattern(&monstre, joueur, tour)
-		gestionmort.Isdead(joueur)
-		if joueur.GameOver {
-			return false
-		}
-		tour++
-	}
-
-	fmt.Println(joueur.Nom, "a perdu le combat.")
-	return false
-}
-
 func TrainingFight(joueur *personnage.Etudiant) bool {
-	return trainingFight(joueur)
+	monstre := personnage.Init_Maxime()
+	return Combat(&monstre, joueur)
 }

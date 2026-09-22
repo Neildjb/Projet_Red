@@ -1,7 +1,7 @@
 package menu
 
 import (
-	npc "Projet_Red/NPC"
+	"Projet_Red/NPC"
 	"Projet_Red/combat"
 	"Projet_Red/inventaire"
 	"Projet_Red/personnage"

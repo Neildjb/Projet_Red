@@ -2,9 +2,6 @@ package jeu
 
 import "Projet_Red/personnage"
 
-// TACHE 11 : Amélioration de la création de personnage
-// TACHE 11 - suite
-
 func Capitalize(s string) string {
 	tab := []rune(s)
 	debut := true

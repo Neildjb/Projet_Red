@@ -5,7 +5,6 @@ import (
 	"fmt"
 )
 
-// Ajoute ici les trois sorts que le joueur pourra apprendre.
 var spellbook = []string{"Kunaï", "Rasengan", "Sharingan"}
 
 func LearnSpell(joueur *personnage.Etudiant, objet, sort string) bool {
@@ -43,14 +42,14 @@ func containsSpell(sort string) bool {
 
 func SpellDamage(sort string) int {
 	switch sort {
+	case "Coup de poing":
+		return 10
 	case "Kunaï":
 		return 20
 	case "Rasengan":
 		return 35
 	case "Sharingan":
 		return 100
-	case "coup de pied":
-		return 10
 	default:
 		return 0
 	}

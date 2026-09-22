@@ -30,9 +30,9 @@ func main() {
 	fmt.Println("")
 	fmt.Println("Kage = Tres facile")
 	fmt.Println("Jonin = Facile")
-	fmt.Println("Genin = Complexe")
-	fmt.Println("Ninja = Tres complexe")
-	fmt.Println("Naruto Prime = hardcore (une seule mort, 30 PV)")
+	fmt.Println("Genin = Moyen")
+	fmt.Println("Ninja = Tres dur")
+	fmt.Println("Naruto Prime = hardcore (une seule mort)")
 	fmt.Println("Admin0000(remplace 0000 par le code secret) = mode de triche")
 	fmt.Println("")
 	for {
@@ -43,24 +43,22 @@ func main() {
 			continue
 		}
 
+		choix2 = jeu.Capitalize(choix2)
+
 		switch choix2 {
 		case "Kage", "Jonin", "Genin", "Ninja", "Naruto Prime", "Admin4416":
-			goto classeValide
+				c1 := jeu.CharacterCreation(choix, choix2)
+				if c1.Hardcore {
+					fmt.Println("Mode hardcore activé : une seule mort est décisive, la partie s'arrêtera définitivement.")
+				}
+				fmt.Println("================Character================")
+				fmt.Println("")
+				fmt.Println("Voici les données de votre personnage :")
+				fmt.Println("")
+				personnage.DisplayInfo(c1)
+				menu.Menu(c1)
 		default:
 			fmt.Println("La classe ne correspond à aucune classe existante.")
 		}
 	}
-
-classeValide:
-	c1 := jeu.CharacterCreation(choix, choix2)
-	if c1.Hardcore {
-		fmt.Println("Mode hardcore activé : une seule mort est décisive, la partie s'arrêtera définitivement.")
-	}
-
-	fmt.Println("================Character================")
-	fmt.Println("")
-	fmt.Println("Voici les données de votre personnage :")
-	fmt.Println("")
-	personnage.DisplayInfo(c1)
-	menu.Menu(c1)
 }
