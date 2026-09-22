@@ -1,11 +1,10 @@
-package Menu
+package menu
 
 import (
+	npc "Projet_Red/NPC"
 	"Projet_Red/combat"
-	"Projet_Red/forgeron"
 	"Projet_Red/inventaire"
 	"Projet_Red/personnage"
-	"Projet_Red/tache7101111suite"
 	"fmt"
 )
 
@@ -33,9 +32,9 @@ func Menu(c personnage.Etudiant) {
 		case "2":
 			inventaire.AccessInventory(&c)
 		case "3":
-			tache7101111suite.Marchand(&c)
+			npc.Marchand(&c)
 		case "4":
-			forgeron.Forgeron(&c)
+			npc.Forgeron(&c)
 		case "5":
 			combat.TrainingFight(&c)
 			if c.GameOver {
@@ -96,43 +95,43 @@ func quetesFinJeu(joueur personnage.Etudiant) {
 
 func affiche_credit() {
 	fmt.Println(`
-#  CRÉDITS
+==================== CRÉDITS ====================
 
-## Un projet réalisé dans le cadre du Projet RED
+Un projet réalisé dans le cadre du Projet RED
 
-###  Campus Ynov Bordeaux
-**Bachelor 1 — 2026**
+------------------ Campus Ynov Bordeaux ------------------
+Bachelor 1 — 2026
 
----
-
-###  Équipe de développement
-**Mathias Fontagne ==== [Nom de l'élève 2] ==== [Nom de l'élève 3]**
+---------------- Équipe de développement ----------------
+Mathias Fontagne
 Développement • Gameplay • Conception
 
----
+[Nom de l'élève 2]
+Développement • Gameplay • Conception
 
-###  Mentors
-Un grand merci à nos deux mentors pour leur accompagnement, leurs conseils et leur aide tout au long du projet :
+[Nom de l'élève 3]
+Développement • Gameplay • Conception
 
-**Maxime & Sarha**
+----------------------- Mentors --------------------------
+Un grand merci à nos deux mentors pour leur accompagnement,
+leurs conseils et leur aide tout au long du projet :
+
+Maxime & Sarha
 Mentor du projet
 
-**Sarha**
-Mentor du projet
+------------------ À propos du projet --------------------
+Ce jeu a été conçu, développé et finalisé en une semaine,
+dans le cadre du Projet RED au sein du Campus Ynov Bordeaux.
 
----
+Un projet réalisé par trois étudiants de Bachelor 1, avec pour
+objectif de concevoir un jeu vidéo complet dans un temps limité,
+de l'idée initiale jusqu'à sa réalisation finale.
 
-###  À propos du projet
-Ce jeu a été conçu, développé et finalisé en **une semaine**, dans le cadre du **Projet RED** au sein du Campus Ynov Bordeaux.
+------------------------ Merci ----------------------------
+Merci à toutes les personnes ayant contribué, directement ou
+indirectement, à la réalisation de ce projet.
 
-Un projet réalisé par trois étudiants de **Bachelor 1**, avec pour objectif de concevoir un jeu vidéo complet dans un temps limité, de l'idée initiale jusqu'à sa réalisation finale.
-
----
-
-###  Merci
-Merci à toutes les personnes ayant contribué, directement ou indirectement, à la réalisation de ce projet.
-
-**Merci d'avoir joué !**
+Merci d'avoir joué !
 
 © 2026 — Projet RED • Ynov Bordeaux`)
 }

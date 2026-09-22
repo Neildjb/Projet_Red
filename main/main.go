@@ -1,9 +1,9 @@
 package main
 
 import (
-	"Projet_Red/Menu"
+	"Projet_Red/jeu"
+	"Projet_Red/menu"
 	"Projet_Red/personnage"
-	"Projet_Red/tache7101111suite"
 	"fmt"
 )
 
@@ -52,7 +52,7 @@ func main() {
 	}
 
 classeValide:
-	c1 := tache7101111suite.CharacterCreation(choix, choix2)
+	c1 := jeu.CharacterCreation(choix, choix2)
 	if c1.Hardcore {
 		fmt.Println("Mode hardcore activé : une seule mort est décisive, la partie s'arrêtera définitivement.")
 	}
@@ -62,5 +62,5 @@ classeValide:
 	fmt.Println("Voici les données de votre personnage :")
 	fmt.Println("")
 	personnage.DisplayInfo(c1)
-	Menu.Menu(c1)
+	menu.Menu(c1)
 }

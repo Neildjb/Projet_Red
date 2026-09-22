@@ -1,4 +1,4 @@
-package tache7101111suite
+package jeu
 
 import "Projet_Red/personnage"
 

@@ -1,12 +1,11 @@
 package inventaire
 
 import (
-	"Projet_Red/UpgradeInv"
-	"Projet_Red/forgeron"
+	npc "Projet_Red/NPC"
+	"Projet_Red/amelioration"
 	"Projet_Red/personnage"
-	spellbook "Projet_Red/spellBook"
-	potions "Projet_Red/tache5_6_9_12"
-	"Projet_Red/tache7101111suite"
+	"Projet_Red/potions"
+	"Projet_Red/sorts"
 	"fmt"
 	"strconv"
 	"strings"
@@ -44,7 +43,7 @@ func AccessInventory(e *personnage.Etudiant) {
 				} else {
 
 					fmt.Println("Je vais retirer " + e.Inventaire[n-1] + " de l'inventaire")
-					tache7101111suite.RemoveInventory(e, e.Inventaire[n-1])
+					npc.RemoveInventory(e, e.Inventaire[n-1])
 					fmt.Println(e.Inventaire)
 					return
 				}
@@ -91,19 +90,19 @@ func utiliserObjet(e *personnage.Etudiant) {
 	case "Potion de guérison du poison":
 		fmt.Println("Cette potion est utilisable uniquement pendant un combat.")
 	case "bandeau frontale ninja", "Manteau Akatsuki", "Bottes de Shinobi":
-		forgeron.Equiper(e, objet)
+		npc.Equiper(e, objet)
 	case "upgrade1", "upgrade2":
 		ancienneCapacite := e.CapaciteInventaire
-		fmt.Println(UpgradeInv.UpgradeInventorySlot(e))
+		fmt.Println(amelioration.UpgradeInventorySlot(e))
 		if e.CapaciteInventaire > ancienneCapacite {
-			tache7101111suite.RemoveInventory(e, objet)
+			npc.RemoveInventory(e, objet)
 		}
 	case "Kunaï":
-		spellbook.LearnSpell(e, objet, "Kunaï")
+		sorts.LearnSpell(e, objet, "Kunaï")
 	case "Rasengan":
-		spellbook.LearnSpell(e, objet, "Rasengan")
+		sorts.LearnSpell(e, objet, "Rasengan")
 	case "Sharingan":
-		spellbook.LearnSpell(e, objet, "Sharingan")
+		sorts.LearnSpell(e, objet, "Sharingan")
 	default:
 		fmt.Println("Cet objet est un matériau du forgeron et ne peut pas être utilisé.")
 	}

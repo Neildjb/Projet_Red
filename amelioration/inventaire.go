@@ -1,4 +1,4 @@
-package UpgradeInv
+package amelioration
 
 import (
 	"Projet_Red/personnage"

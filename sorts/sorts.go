@@ -1,4 +1,4 @@
-package spellbook
+package sorts
 
 import (
 	"Projet_Red/personnage"

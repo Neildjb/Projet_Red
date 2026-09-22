@@ -1,4 +1,4 @@
-package tache8
+package gestionmort
 
 import (
 	"Projet_Red/personnage"

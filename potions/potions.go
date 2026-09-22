@@ -1,4 +1,4 @@
-package personnage
+package potions
 
 import (
 	"Projet_Red/personnage"

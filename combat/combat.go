@@ -1,10 +1,10 @@
 package combat
 
 import (
+	"Projet_Red/gestionmort"
 	"Projet_Red/personnage"
-	spellbook "Projet_Red/spellBook"
-	potions "Projet_Red/tache5_6_9_12"
-	"Projet_Red/tache8"
+	"Projet_Red/potions"
+	"Projet_Red/sorts"
 	"fmt"
 	"strings"
 )
@@ -14,7 +14,7 @@ func degatsAttaque(attaque string) int {
 	case "coup de poing":
 		return 10
 	default:
-		return spellbook.SpellDamage(attaque)
+		return sorts.SpellDamage(attaque)
 	}
 }
 
@@ -90,7 +90,7 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 			}
 			fmt.Println(joueur.Nom, "perd 5 PV à cause du poison.")
 			if joueur.Vie == 0 {
-				tache8.Isdead(joueur)
+				gestionmort.Isdead(joueur)
 				break
 			}
 		}
@@ -124,7 +124,7 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 			joueur.Vie = 0
 		}
 		fmt.Println(monstre.Nom, "inflige", monstre.Points_attaque, "dégâts à", joueur.Nom)
-		tache8.Isdead(joueur)
+		gestionmort.Isdead(joueur)
 		tour++
 	}
 
@@ -281,7 +281,7 @@ func trainingFight(joueur *personnage.Etudiant) bool {
 		}
 
 		monsterPattern(&monstre, joueur, tour)
-		tache8.Isdead(joueur)
+		gestionmort.Isdead(joueur)
 		if joueur.GameOver {
 			return false
 		}
