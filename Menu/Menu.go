@@ -18,8 +18,9 @@ func Menu(c personnage.Etudiant) {
 		fmt.Println("2 - Accéder à l'inventaire")
 		fmt.Println("3 - Voir ce que vend le Marchand")
 		fmt.Println("4 - Voir ce que vend le Forgeron")
-		fmt.Println("5 - Tuto combat")
-		fmt.Println("6 - Quitter")
+		fmt.Println("5 - s'équiper ")
+		fmt.Println("6 - Tuto combat")
+		fmt.Println("7 - Quitter")
 
 		var choix string
 		fmt.Scanln(&choix)
