@@ -15,9 +15,20 @@ type Recette struct {
 }
 
 var recettes = []Recette{
-	{Nom: "bandeau frontale ninja", Ressources: map[string]int{"Plume de Corbeau": 1, "Cuir de Sanglier": 1}},
-	{Nom: "Manteau Akatsuki", Ressources: map[string]int{"Fourrure de Loup": 2, "Peau de Troll": 1}},
-	{Nom: "Bottes de Shinobi", Ressources: map[string]int{"Fourrure de Loup": 1, "Cuir de Sanglier": 1}},
+	{Nom: "bandeau frontale ninja", Ressources: map[string]int{"Plume de Corbeau": 1}},
+	{Nom: "Manteau Akatsuki", Ressources: map[string]int{"laine": 1}},
+	{Nom: "Bottes de Shinobi", Ressources: map[string]int{"patte de Lapin": 1}},
+}
+
+type piece struct {
+	Slot  string
+	Bonus int
+}
+
+var pieces = map[string]piece{
+	"bandeau frontale ninja": {Slot: "tete", Bonus: 10},
+	"Manteau Akatsuki":       {Slot: "torse", Bonus: 25},
+	"Bottes de Shinobi":      {Slot: "pieds", Bonus: 15},
 }
 
 func Forgeron(c *personnage.Etudiant) {
@@ -45,7 +56,7 @@ func Forgeron(c *personnage.Etudiant) {
 
 		// 1. assez d'argent ?
 		if c.Argent < coutFabrication {
-			fmt.Println("T'as pas de quoi payer, il me faut", coutFabrication, "pièces d'or.")
+			fmt.Println("Sale pauvre t'as même pas assez, il me faudrait", coutFabrication, "pièces d'or.")
 			continue
 		}
 
@@ -70,6 +81,67 @@ func Forgeron(c *personnage.Etudiant) {
 		}
 		tache7101111suite.AddInventory(c, r.Nom)
 		fmt.Println(r.Nom, "fabriqué !")
+	}
+}
+
+// Equiper équipe un objet de l'inventaire
+func Equiper(c *personnage.Etudiant, nom string) {
+	p, ok := pieces[nom]
+	if !ok {
+		fmt.Println("Cet objet ne s'équipe pas.")
+		return
+	}
+	if compter(c, nom) == 0 {
+		fmt.Println("Tu n'as pas", nom, "dans ton inventaire.")
+		return
+	}
+
+	var emplacement *string
+	switch p.Slot {
+	case "tete":
+		emplacement = &c.Equipement.Headgear
+	case "torse":
+		emplacement = &c.Equipement.BodyArmor
+	case "pieds":
+		emplacement = &c.Equipement.FeetArmor
+	}
+
+	retirerUn(c, nom)
+
+	ancien := *emplacement
+	if ancien != "" {
+		c.MaxVie -= pieces[ancien].Bonus
+		tache7101111suite.AddInventory(c, ancien)
+	}
+
+	*emplacement = nom
+	c.MaxVie += p.Bonus
+	if c.Vie > c.MaxVie {
+		c.Vie = c.MaxVie
+	}
+	fmt.Println(nom, "équipé ! Vie maximum :", c.MaxVie)
+}
+
+// MenuEquiper affiche les équipements et laisse choisir
+func MenuEquiper(c *personnage.Etudiant) {
+	for {
+		fmt.Println("\nQuel équipement veux-tu équiper ?")
+		for i, r := range recettes {
+			fmt.Printf("%d - %s (x%d dans l'inventaire)\n", i+1, r.Nom, compter(c, r.Nom))
+		}
+		fmt.Println("0 - Retour")
+
+		var saisie string
+		fmt.Scanln(&saisie)
+		n, err := strconv.Atoi(saisie)
+		if err != nil || n < 0 || n > len(recettes) {
+			fmt.Println("Choix invalide.")
+			continue
+		}
+		if n == 0 {
+			return
+		}
+		Equiper(c, recettes[n-1].Nom)
 	}
 }
 
