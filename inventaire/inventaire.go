@@ -1,7 +1,7 @@
 package inventaire
 
 import (
-	"Projet_Red/NPC"
+	npc "Projet_Red/NPC"
 	"Projet_Red/amelioration"
 	"Projet_Red/personnage"
 	"Projet_Red/potions"
@@ -12,12 +12,14 @@ import (
 )
 
 func AccessInventory(e *personnage.Etudiant) {
+	fmt.Println("Inventaire :", strings.Join(e.Inventaire, ", "))
+	fmt.Println("Capacité :", len(e.Inventaire), "/", e.CapaciteInventaire)
+	fmt.Println("1 - Supprimer un objet de l'inventaire ")
+	fmt.Println("2 - Utiliser un objet")
+	fmt.Println("3 - Retour")
 	for {
-		fmt.Println("Inventaire :", strings.Join(e.Inventaire, ", "))
-		fmt.Println("Capacité :", len(e.Inventaire), "/", e.CapaciteInventaire)
-		fmt.Println("1 - Supprimer un objet de l'inventaire ")
-		fmt.Println("2 - Utiliser un objet")
-		fmt.Println("3 - Retour")
+
+		
 		var choix string
 		fmt.Scanln(&choix)
 
@@ -42,7 +44,7 @@ func AccessInventory(e *personnage.Etudiant) {
 
 				} else {
 
-					fmt.Println("Je vais retirer " + e.Inventaire[n-1] + " de l'inventaire")
+					fmt.Println("Je vais retirer " + e.Inventaire[n-1] +" de l'inventaire")
 					npc.RemoveInventory(e, e.Inventaire[n-1])
 					fmt.Println(e.Inventaire)
 					return

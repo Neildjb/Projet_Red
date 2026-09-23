@@ -1,6 +1,7 @@
 package combat
 
 import (
+	"Projet_Red/etat"
 	"Projet_Red/gestionmort"
 	"Projet_Red/personnage"
 	"Projet_Red/potions"
@@ -27,7 +28,6 @@ func collectMonsterMoney(monstre *personnage.Monster, joueur *personnage.Etudian
 	if monstre.ArgentDrop <= 0 {
 		return
 	}
-
 	joueur.Argent += monstre.ArgentDrop
 	fmt.Println("Vous gagnez", monstre.ArgentDrop, "pièces d'or.")
 	fmt.Println("Argent total :", joueur.Argent, "pièces d'or")
@@ -39,10 +39,13 @@ func collectCombatExperience(monstre *personnage.Monster, joueur *personnage.Etu
 }
 
 func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
-	tour := 1
+	etat.MonstreActuel = monstre
 	defer func() {
+		etat.MonstreActuel = nil
 		joueur.Poison = false
 	}()
+
+	tour := 1
 
 	fmt.Println("Un", monstre.Nom, "apparaît !")
 	if monstre.Nom == "Demon a queue" {
@@ -150,7 +153,6 @@ func inventoryTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) boo
 		fmt.Println("L'objet", objet, "est visible mais seuls les potions peuvent être utilisées pendant le combat.")
 		return false
 	}
-
 }
 
 func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) bool {

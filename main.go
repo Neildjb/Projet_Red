@@ -2,12 +2,29 @@ package main
 
 import (
 	menu "Projet_Red/Menu"
+	"Projet_Red/etat"
 	"Projet_Red/jeu"
 	"Projet_Red/personnage"
 	"fmt"
+	"log"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 func main() {
+	go lancerJeuTerminal()
+
+	j := &Jeu{}
+	j.chargerSprites()
+
+	ebiten.SetWindowSize(640, 480)
+	ebiten.SetWindowTitle("Shinobi Genesis")
+	if err := ebiten.RunGame(j); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func lancerJeuTerminal() {
 	fmt.Println("\n========================================")
 	fmt.Println("           SHINOBI GENESIS")
 	fmt.Println("========================================\n")
@@ -49,6 +66,8 @@ func main() {
 		switch choix2 {
 		case "Kage", "Jonin", "Genin", "Ninja", "Naruto_Prime", "Admin4416":
 			c1 := jeu.CharacterCreation(choix, choix2)
+			etat.JoueurActuel = &c1
+
 			if c1.Hardcore {
 				fmt.Println("\n!!! MODE HARDCORE ACTIVÉ !!!")
 				fmt.Println("Une seule mort est décisive : la partie s'arrêtera définitivement.")
@@ -58,9 +77,10 @@ func main() {
 			fmt.Println("\n========================================")
 			fmt.Println("          VOTRE PERSONNAGE")
 			fmt.Println("========================================\n")
-			personnage.DisplayInfo(c1)
+			personnage.DisplayInfo(*etat.JoueurActuel)
 			fmt.Println()
-			menu.Menu(c1)
+			menu.Menu(etat.JoueurActuel)
+			return
 		default:
 			fmt.Println("La classe ne correspond à aucune classe existante.")
 		}

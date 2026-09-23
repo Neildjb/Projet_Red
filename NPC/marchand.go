@@ -73,13 +73,12 @@ func AddInventory(c *personnage.Etudiant, item string) bool {
 }
 
 func RemoveInventory(c *personnage.Etudiant, item string) {
-	var res []string
-	for _, v := range c.Inventaire {
-		if v != item {
-			res = append(res, v)
+	for i, v := range c.Inventaire {
+		if v == item {
+			c.Inventaire = append(c.Inventaire[:i], c.Inventaire[i+1:]...)
+			return
 		}
 	}
-	c.Inventaire = res
 }
 
 type Item struct {

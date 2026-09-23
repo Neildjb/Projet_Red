@@ -8,7 +8,7 @@ import (
 	"fmt"
 )
 
-func Menu(c personnage.Etudiant) {
+func Menu(c *personnage.Etudiant) {
 	continuer := true
 
 	for continuer {
@@ -32,37 +32,37 @@ func Menu(c personnage.Etudiant) {
 		switch choix {
 		case "1":
 			fmt.Println("\n--- Informations du personnage ---")
-			personnage.DisplayInfo(c)
+			personnage.DisplayInfo(*c)
 		case "2":
 			fmt.Println("\n--- Inventaire ---")
-			inventaire.AccessInventory(&c)
+			inventaire.AccessInventory(c)
 		case "3":
 			fmt.Println("\n--- Marchand ---")
-			npc.Marchand(&c)
+			npc.Marchand(c)
 		case "4":
 			fmt.Println("\n--- Forgeron ---")
-			npc.Forgeron(&c)
+			npc.Forgeron(c)
 		case "5":
 			fmt.Println("\n--- Tutoriel de combat ---")
-			combat.TrainingFight(&c)
+			combat.TrainingFight(c)
 			if c.GameOver {
 				return
 			}
 		case "6":
 			fmt.Println("\n--- Arène de combat ---")
-			arenaMenu(&c)
+			arenaMenu(c)
 			if c.GameOver {
 				return
 			}
 		case "7":
 			fmt.Println("\n--- École des classes ---")
-			ecole(&c)
+			ecole(c)
 			if c.GameOver {
 				return
 			}
 		case "8":
 			fmt.Println("\n--- Quêtes ---")
-			quetesFinJeu(c)
+			quetesFinJeu(*c)
 		case "9":
 			fmt.Println("\nÀ bientôt, shinobi !")
 			continuer = false
