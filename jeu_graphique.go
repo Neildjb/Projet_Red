@@ -31,9 +31,9 @@ func (j *Jeu) chargerSprites() {
 	// j.background = chargerImage("assets/background/fond.png")
 
 	nomsFichiersJoueurs := map[string]string{
-		"Kage":         "background/Naruto_prime.png",
-		"Jonin":        "background/Naruto_prime.png",
-		"Genin":        "background/Naruto_prime.png",
+		"Kage":         "background/Naruto_demon.png",
+		"Jonin":        "background/sasuke.png",
+		"Genin":        "background/RockLee.png",
 		"Ninja":        "background/Naruto_prime.png",
 		"Naruto_Prime": "background/Naruto_prime.png",
 		"Admin4416":    "background/Naruto_prime.png",
