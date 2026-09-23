@@ -46,7 +46,6 @@ func Menu(c *personnage.Etudiant) Resultat {
 			fmt.Println("\n--- Inventaire ---")
 			inventaire.AccessInventory(c)
 		case "3":
-			fmt.Println("\n--- Marchand ---")
 			npc.Marchand(c)
 		case "4":
 			fmt.Println("\n--- Forgeron ---")
@@ -124,6 +123,7 @@ func quetesFinJeu(joueur personnage.Etudiant) {
 		afficherQuete("Trophée final", fmt.Sprintf("%d / 1", boolVersNombre(tropheeObtenu)), tropheeObtenu)
 		afficherQuete("Équipements équipés", fmt.Sprintf("%d / 4", nombreEquipements), equipementComplet)
 		afficherQuete("Atteindre le rang Kage ou le mode hardcore", "Kage / Hardcore", rangFinalAtteint)
+		fmt.Println("Une quête secrète existe dans ce jeu...")
 
 		if joueur.Hardcore {
 			fmt.Println("\n9 - Accéder à la quête secrète")
@@ -314,24 +314,33 @@ func ecole(joueur *personnage.Etudiant) {
 	var nouvelleClasse string
 	var monstre personnage.Monster
 	var maxVie int
+	var lieu string
+	seuilExperience := 0
 
 	switch joueur.Classe {
 	case "Naruto_Prime":
 		nouvelleClasse = "Ninja"
 		monstre = personnage.Init_Maxime()
 		maxVie = 50
+		lieu = "Partir au lac"
 	case "Ninja":
 		nouvelleClasse = "Genin"
 		monstre = personnage.Init_Ninjas_déserteurs()
 		maxVie = 100
+		lieu = "Partir au lac"
+		seuilExperience = 1
 	case "Genin":
 		nouvelleClasse = "Jonin"
 		monstre = personnage.Init_Golems_de_chakra()
 		maxVie = 150
+		lieu = "Partir en forêt"
+		seuilExperience = 3
 	case "Jonin":
 		nouvelleClasse = "Kage"
 		monstre = personnage.Init_Demon_a_queue()
 		maxVie = 300
+		lieu = "Partir en grotte"
+		seuilExperience = 5
 	case "Kage":
 		fmt.Println("Tu as déjà atteint la classe la plus élevée.")
 		return
@@ -343,7 +352,12 @@ func ecole(joueur *personnage.Etudiant) {
 		return
 	}
 
-	fmt.Println("Tu peux tenter de devenir", nouvelleClasse, "en affrontant", monstre.Nom+".")
+	fmt.Println("Tu peux tenter de devenir", nouvelleClasse, "en", lieu+".")
+	if joueur.ExperienceCombat < seuilExperience {
+		fmt.Println("Le combat ne peut pas commencer. Il faut au moins", seuilExperience, "d'expérience de combat.")
+		fmt.Println("Ton expérience actuelle est de", joueur.ExperienceCombat, ".")
+		return
+	}
 	if joueur.Argent < prixEntree {
 		fmt.Println("Tu n'as pas assez d'argent pour entrer dans l'école.")
 		return
@@ -351,9 +365,8 @@ func ecole(joueur *personnage.Etudiant) {
 
 	var choix string
 	fmt.Println("1 - Entrer dans l'école")
-	fmt.Println("2 - Retour")
 	fmt.Println("0 - Retour")
-	fmt.Scanln(&choix)
+	fmt.Scan(&choix)
 	if choix != "1" {
 		return
 	}

@@ -1,8 +1,8 @@
 # Shinobi Genesis
 
-Jeu de combat au tour par tour réalisé en Go dans le cadre du Projet RED.
+Jeu de combat au tour par tour développé en Go dans le cadre du Projet RED.
 
-## Lancer le jeu
+## Démarrage
 
 Depuis la racine du projet :
 
@@ -10,99 +10,110 @@ Depuis la racine du projet :
 go run .
 ```
 
-Lorsque tu lances le jeu, une fenêtre graphique contenant les images des personnages et des monstres s'ouvre en plus du terminal. Pour voir les deux en même temps, partage ton écran en deux : garde le terminal d'un côté et la fenêtre graphique de l'autre.
+Le jeu utilise deux affichages :
 
-Les questions et les menus se remplissent dans le terminal : écris le numéro ou le texte demandé, puis appuie sur `Entrée`.
+- le terminal pour les menus, les choix et les combats ;
+- une fenêtre Ebiten pour afficher les personnages, les monstres et les barres de vie.
 
-Pour arrêter le jeu, appuie sur `Ctrl+C` dans le terminal. Le menu principal ne propose pas de bouton pour quitter.
+Saisis toujours le choix demandé puis appuie sur `Entrée`.
 
-Les informations sont affichées les unes sous les autres. Si elles dépassent la hauteur de la fenêtre, remonte avec la molette de la souris pour relire les choix, les statistiques et les messages du combat.
+## Dépannage du terminal
 
-## Comment jouer
+Si le jeu semble bloqué après une commande ou si un menu ne répond plus :
 
-1. Choisis un pseudo et une classe.
-2. Consulte le menu principal pour afficher ton personnage, ouvrir l'inventaire, acheter des objets ou combattre.
-3. Pendant un combat, choisis une attaque ou ouvre ton inventaire. Le choix `0` permet uniquement de revenir au menu de combat depuis la liste des sorts ou des objets ; il ne permet pas de quitter le combat.
-4. Termine le tutoriel contre Maxime : il rapporte 20 pièces la première fois, puis 2 pièces lors des fois suivantes.
-5. Gagne des combats pour obtenir de l'argent et de l'expérience.
-6. Achète des sorts, fabrique et équipe des équipements, puis change de classe à l'école.
-7. Utilise `0` pour revenir en arrière dans les menus et sous-menus.
-8. Consulte les quêtes pour suivre ta progression jusqu'à la fin du jeu.
+1. saisis `0` dans le terminal ;
+2. appuie sur `Entrée` ;
+3. répète l'opération plusieurs fois si nécessaire, jusqu'à ce que le menu se débloque.
 
-### Équipements
+Cette manipulation permet de vider les choix restés dans l'entrée du terminal. Pour arrêter immédiatement le programme, utilise `Ctrl+C`.
 
-Le personnage peut porter quatre équipements en même temps : tête, corps, jambes et pieds. Chaque équipement ajoute des PV lorsqu'il est équipé :
+## Menu principal
 
-- Bandeau frontale ninja : `+15 PV`
-- Manteau Akatsuki : `+20 PV`
-- Pantalon des Six Chemins : `+25 PV`
-- Sandales du Shinobi : `+30 PV`
+| Choix | Fonction |
+| ---: | --- |
+| `1` | Afficher les informations du personnage, puis confirmer avec `1` |
+| `2` | Ouvrir l'inventaire |
+| `3` | Ouvrir le marchand |
+| `4` | Ouvrir le forgeron |
+| `5` | Lancer le tutoriel de combat |
+| `6` | Partir à l'aventure |
+| `7` | Accéder à l'école des classes |
+| `8` | Consulter les quêtes |
+| `9` | Quitter, recommencer ou revenir au menu |
 
-Les Sandales du Shinobi se fabriquent chez le forgeron avec 4 `bois millénaire`.
+Dans les menus secondaires, `0` sert généralement à revenir en arrière.
 
-### Classes
+## Combat et progression
 
-| Classe | Difficulté | PV de départ | Image du personnage | Ennemis combattus |
-| --- | --- | ---: | --- | --- |
-| Kage | Très facile | 300 | `Narutodemon` | Pain, Itachi, Obito, Madara |
-| Jonin | Facile | 150 | `sasuke` | Deidara, Kisame, Sasori, Orochimaru |
-| Genin | Moyenne | 100 | `RockLee` | Asuma, Gaara, Shino, Kakshi |
-| Ninja | Très difficile | 50 | `NarutoPrime` | Ninja déserteur, Sai, Yamato, Danzo |
-| Naruto_Prime | Hardcore | 30 | `NarutoPrime` | Neil, Andy, Mathias, Maxime_boss |
-| Admin4416 | Spéciale | 10 000 | `NarutoPrime` | Neil, Andy, Mathias, Maxime_boss |
+Les combats se jouent au tour par tour. Le joueur peut attaquer avec ses sorts ou utiliser un objet de combat. Le poison inflige `10 PV` par tour au joueur comme à l'ennemi.
 
-Le mode `Naruto_Prime` est un mode hardcore : une seule mort est décisive et la partie s'arrête définitivement. C'est ici que le jeu devient vraiment intéressant. Bonne chance pour terminer le jeu dans cet état !
+Une victoire rapporte de l'expérience, de l'argent et parfois des objets. Le tutoriel contre Maxime rapporte 20 pièces lors de la première victoire, puis 2 pièces lors des suivantes.
 
-## Arborescence
+En mode normal, une mort fait perdre le combat, restaure les PV au maximum et conserve l'inventaire, l'équipement, l'argent, l'expérience et la progression. En mode `Naruto_Prime`, une seule mort termine définitivement la partie.
+
+## Classes
+
+| Classe | Difficulté | PV de départ | Image |
+| --- | --- | ---: | --- |
+| Kage | Très facile | 300 | `Narutodemon` |
+| Jonin | Facile | 150 | `sasuke` |
+| Genin | Moyenne | 100 | `RockLee` |
+| Ninja | Très difficile | 50 | `NarutoPrime` |
+| Naruto_Prime | Hardcore | 30 | `NarutoPrime` |
+| Admin4416 | Spéciale | 10 000 | `NarutoPrime` |
+
+L'école permet de progresser dans cet ordre : `Naruto_Prime` → `Ninja` → `Genin` → `Jonin` → `Kage`. L'entrée coûte 80 pièces et demande un combat. Les combats de l'école utilisent les lieux affichés dans l'aventure : lac, forêt ou grotte. Si l'expérience minimale n'est pas atteinte, le combat ne démarre pas.
+
+## Marchand et forgeron
+
+Le marchand vend des potions, des sorts et deux améliorations d'inventaire. Les objets uniques suivants ne peuvent être achetés qu'une seule fois :
+
+- `Lot de Kunaï (nouveau sort)` ;
+- `Rasengan (nouveau sort)` ;
+- `upgradeinventoryslot1` ;
+- `upgradeinventoryslot2`.
+
+Chaque équipement du forgeron ne peut également être fabriqué qu'une seule fois. Les équipements sont conservés lorsqu'ils sont équipés ou retirés de l'inventaire.
+
+| Équipement | Bonus de vie |
+| --- | ---: |
+| Bandeau frontal ninja | `+15 PV` |
+| Manteau Akatsuki | `+20 PV` |
+| Pantalon des Six Chemins | `+25 PV` |
+| Sandales du Shinobi | `+30 PV` |
+
+Ressources disponibles : `Acier`, `Fil d'Akatsuki`, `Tissu déchiré` et `bois millénaire`.
+
+## Quêtes
+
+Le menu des quêtes suit la capacité d'inventaire, l'argent, l'expérience, les sorts, le trophée final et les équipements. Une quête supplémentaire demande d'atteindre `Kage` ou de jouer en mode hardcore. `Admin4416` la valide aussi en interne, sans être mentionné dans le texte affiché.
+
+Une quête secrète existe dans le jeu. Son accès n'est pas indiqué dans le menu. Elle est visible uniquement pour un personnage en mode hardcore et demande de devenir `Kage` en partant de `Naruto_Prime`. Une fois réussie, un message de félicitations s'affiche et le choix `1` permet de retourner au menu.
+
+## Structure du projet
 
 ```text
 Projet_Red/
-├── amelioration/
-│   └── inventaire.go    # UpgradeInventorySlot
-├── combat/
-│   └── combat.go        # Combat, TrainingFight, displayCombatStatus,
-│                        # collectMonsterDrop, collectMonsterMoney,
-│                        # collectCombatExperience, inventoryTurn,
-│                        # characterTurn
-├── etat/
-│   └── etat.go          # JoueurActuel, MonstreActuel
-├── gestionmort/
-│   └── mort.go          # Isdead
-├── inventaire/
-│   └── inventaire.go    # AccessInventory, utiliserObjet
-├── jeu/
-│   └── creation_personnage.go
-│                        # Capitalize, CharacterCreation
-├── Menu/
-│   └── Menu.go          # Menu, quetesFinJeu, affiche_credit,
-│                        # afficherQuete, nombreDeSorts,
-│                        # nombreDEquipements, boolVersNombre,
-│                        # possedeObjet, ecole, arenaMenu
-├── NPC/
-│   ├── forgeron.go      # Forgeron, Equiper, retirerUn, compter
-│   └── marchand.go      # Marchand, AddInventory, RemoveInventory,
-│                        # prixActuel
-├── personnage/
-│   └── personnage.go    # InitCharacter, DisplayInfo, AjouterItem,
-│                        # bonusEquipement,
-│                        # Init_Maxime, Init_Ninjas_déserteurs,
-│                        # Init_Golems_de_chakra, Init_Demon_a_queue,
-│                        # Init_Madara
-├── potions/
-│   └── potions.go       # TakePot, PoisonPot, FullHealthPot
-├── sorts/
-│   └── sorts.go         # LearnSpell, containsSpell, SpellDamage
-├── assets/              # Images des personnages et des monstres
-├── jeu_graphique.go     # chargerImage, chargerSprites, spriteMonstre,
-│                        # Update, Draw, Layout, dessinerBarreDeVie
-├── main.go              # main, lancerJeuTerminal
-├── go.mod               # Configuration du module Go
-└── README.md            # Documentation du projet
+├── assets/              # Images du jeu
+├── combat/              # Tours, attaques, poison et récompenses
+├── etat/                # État du joueur et du monstre affiché
+├── gestionmort/         # Gestion des morts normales et hardcore
+├── inventaire/          # Utilisation et gestion des objets
+├── jeu/                 # Création du personnage
+├── Menu/                # Menus, quêtes, école et aventure
+├── NPC/                 # Marchand et forgeron
+├── personnage/          # Personnage, monstres et ressources
+├── potions/             # Effets des potions
+├── sorts/               # Sorts et dégâts
+├── jeu_graphique.go     # Fenêtre graphique Ebiten
+├── main.go              # Lancement du jeu
+├── go.mod               # Module Go
+└── README.md            # Documentation
 ```
 
-## Vérifier le projet
+## Vérification
 
-Depuis la racine :
+Depuis la racine du projet :
 
 ```bash
 go test ./...
@@ -112,16 +123,10 @@ go test ./...
 
 Projet réalisé au Campus Ynov Bordeaux, Bachelor 1, 2026.
 
-### Équipe de développement
+- Mathias Fontagne
+- Neil Djebali
+- Andy Abbas
 
-- Mathias Fontagne : développement, gameplay et conception
-- Neil Djebali : développement, gameplay et conception
-- Andy Abbas : développement, gameplay et conception
-
-### Mentors
-
-Merci à Maxime et Sarha pour leur accompagnement, leurs conseils et leur aide tout au long du projet.
-
-Merci d'avoir joué !
+Merci à Maxime et Sarha pour leur accompagnement.
 
 © 2026 — Projet RED • Ynov Bordeaux
