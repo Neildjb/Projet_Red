@@ -193,7 +193,7 @@ func Init_Maxime() Monster {
 		Max_vie:        35,
 		Vie:            35,
 		Points_attaque: 10,
-		Drop:           []string{"Baton de bois"},
+		Drop:           []string{"Acier"},
 		ArgentDrop:     10,
 		ExperienceDrop: 1,
 	}
@@ -205,7 +205,7 @@ func Init_Ninjas_déserteurs() Monster {
 		Max_vie:        60,
 		Vie:            60,
 		Points_attaque: 15,
-		Drop:           []string{"fer"},
+		Drop:           []string{"Fil d'Akatsuki"},
 		ArgentDrop:     20,
 		ExperienceDrop: 1,
 	}
@@ -217,7 +217,7 @@ func Init_Golems_de_chakra() Monster {
 		Max_vie:        85,
 		Vie:            85,
 		Points_attaque: 20,
-		Drop:           []string{"chakra"},
+		Drop:           []string{"Tissu déchiré"},
 		ArgentDrop:     45,
 		ExperienceDrop: 1,
 	}
@@ -228,8 +228,8 @@ func Init_Demon_a_queue() Monster {
 		Nom:            "Demon a queue",
 		Max_vie:        120,
 		Vie:            120,
-		Points_attaque: 25,
-		Drop:           []string{"queue de demon"},
+		Points_attaque: 30,
+		Drop:           []string{"bois millénaire"},
 		ArgentDrop:     65,
 		ExperienceDrop: 2,
 	}
@@ -240,7 +240,7 @@ func Init_Madara() Monster {
 		Nom:            "Madara",
 		Max_vie:        200,
 		Vie:            200,
-		Points_attaque: 35,
+		Points_attaque: 40,
 		Drop:           []string{"Sharingan", "Trophee en or"},
 		ArgentDrop:     150,
 		ExperienceDrop: 5,

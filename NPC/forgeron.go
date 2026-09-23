@@ -14,10 +14,10 @@ type Recette struct {
 }
 
 var recettes = []Recette{
-	{Nom: "bandeau frontale ninja", Ressources: map[string]int{"Baton de bois": 1}},
-	{Nom: "Manteau Akatsuki", Ressources: map[string]int{"fer": 2}},
-	{Nom: "Pantalon des Six Chemins", Ressources: map[string]int{"chakra": 3}},
-	{Nom: "Sandales du Shinobi", Ressources: map[string]int{"queue de demon": 4}},
+	{Nom: "bandeau frontale ninja", Ressources: map[string]int{"Acier": 1}},
+	{Nom: "Manteau Akatsuki", Ressources: map[string]int{"Fil d'Akatsuki": 2}},
+	{Nom: "Pantalon des Six Chemins", Ressources: map[string]int{"Tissu déchiré": 3}},
+	{Nom: "Sandales du Shinobi", Ressources: map[string]int{"bois millénaire": 4}},
 }
 
 type piece struct {

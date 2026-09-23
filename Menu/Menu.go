@@ -104,40 +104,98 @@ func menuFinJeu() Resultat {
 }
 
 func quetesFinJeu(joueur personnage.Etudiant) {
-	capaciteComplete := joueur.CapaciteInventaire >= 20
-	argentComplete := joueur.Argent >= 300
-	experienceComplete := joueur.ExperienceCombat > 30
-	nombreSorts := nombreDeSorts(joueur)
-	sortsComplets := nombreSorts == 4
-	tropheeObtenu := possedeObjet(joueur, "Trophee en or")
-	nombreEquipements := nombreDEquipements(joueur)
-	equipementComplet := nombreEquipements == 4
+	for {
+		capaciteComplete := joueur.CapaciteInventaire >= 20
+		argentComplete := joueur.Argent >= 300
+		experienceComplete := joueur.ExperienceCombat > 30
+		nombreSorts := nombreDeSorts(joueur)
+		sortsComplets := nombreSorts == 4
+		tropheeObtenu := possedeObjet(joueur, "Trophee en or")
+		nombreEquipements := nombreDEquipements(joueur)
+		equipementComplet := nombreEquipements == 4
+		rangFinalAtteint := joueur.Classe == "Kage" || joueur.Classe == "Admin4416" || joueur.Hardcore
 
-	fmt.Println("\n=== Quêtes ===")
-	fmt.Println("Ces quêtes représentent tout ce qu'il faut découvrir pour terminer le jeu.")
-	afficherQuete("Capacité d'inventaire", fmt.Sprintf("%d / 20", joueur.CapaciteInventaire), capaciteComplete)
-	afficherQuete("Pièces d'or", fmt.Sprintf("%d / 300", joueur.Argent), argentComplete)
-	afficherQuete("Expérience de combat", fmt.Sprintf("%d / 30 minimum", joueur.ExperienceCombat), experienceComplete)
-	afficherQuete("Sorts possédés", fmt.Sprintf("%d / 4", nombreSorts), sortsComplets)
-	afficherQuete("Trophée final", fmt.Sprintf("%d / 1", boolVersNombre(tropheeObtenu)), tropheeObtenu)
-	afficherQuete("Équipements équipés", fmt.Sprintf("%d / 4", nombreEquipements), equipementComplet)
+		fmt.Println("\n=== Quêtes ===")
+		fmt.Println("Ces quêtes représentent tout ce qu'il faut découvrir pour terminer le jeu.")
+		afficherQuete("Capacité d'inventaire", fmt.Sprintf("%d / 20", joueur.CapaciteInventaire), capaciteComplete)
+		afficherQuete("Pièces d'or", fmt.Sprintf("%d / 300", joueur.Argent), argentComplete)
+		afficherQuete("Expérience de combat", fmt.Sprintf("%d / 30 minimum", joueur.ExperienceCombat), experienceComplete)
+		afficherQuete("Sorts possédés", fmt.Sprintf("%d / 4", nombreSorts), sortsComplets)
+		afficherQuete("Trophée final", fmt.Sprintf("%d / 1", boolVersNombre(tropheeObtenu)), tropheeObtenu)
+		afficherQuete("Équipements équipés", fmt.Sprintf("%d / 4", nombreEquipements), equipementComplet)
+		afficherQuete("Atteindre le rang Kage ou le mode hardcore", "Kage / Hardcore", rangFinalAtteint)
 
-	if capaciteComplete && argentComplete && experienceComplete && sortsComplets && tropheeObtenu && equipementComplet {
-		fmt.Println("\nFélicitations ! Tu as terminé le jeu et tout découvert.")
-		fmt.Println("1 - Afficher les crédits")
-		var choix string
-		for choix != "1" {
+		if joueur.Hardcore {
+			fmt.Println("\n9 - Accéder à la quête secrète")
+			fmt.Println("1 - Retour au menu principal")
+			var choix string
 			fmt.Scan(&choix)
-			if choix != "1" {
-				fmt.Println("Choix invalide. Tape 1 pour continuer.")
+			switch choix {
+			case "9":
+				if queteSecrete(joueur) {
+					return
+				}
+				continue
+			case "1":
+				return
+			default:
+				fmt.Println("Choix invalide, réessaie.")
+				continue
 			}
 		}
-		affiche_credit()
-		attendreConfirmationLecture()
-	} else {
-		fmt.Println("\nToutes les quêtes ne sont pas encore terminées.")
-		attendreConfirmationLecture()
+
+		if capaciteComplete && argentComplete && experienceComplete && sortsComplets && tropheeObtenu && equipementComplet && rangFinalAtteint {
+			fmt.Println("\nFélicitations ! Tu as terminé le jeu et tout découvert.")
+			fmt.Println("1 - Afficher les crédits")
+			var choix string
+			for choix != "1" {
+				fmt.Scan(&choix)
+				if choix != "1" {
+					fmt.Println("Choix invalide. Tape 1 pour continuer.")
+				}
+			}
+			affiche_credit()
+			attendreConfirmationLecture()
+		} else {
+			fmt.Println("\nToutes les quêtes ne sont pas encore terminées.")
+			attendreConfirmationLecture()
+		}
+		return
 	}
+}
+
+func queteSecrete(joueur personnage.Etudiant) bool {
+	queteReussie := joueur.Classe == "Kage"
+
+	fmt.Println("\n=== Quête secrète ===")
+	afficherQuete("Être Kage en partant de Naruto_Prime", "Kage", queteReussie)
+
+	if !queteReussie {
+		fmt.Println("\nCette quête n'est pas encore terminée. Continue ton évolution jusqu'à Kage.")
+		attendreConfirmationLecture()
+		return false
+	}
+
+	fmt.Println(`
+# 🏆 FÉLICITATIONS, LÉGENDE !
+Tu l’as fait.
+
+Tu viens d’accomplir **la quête la plus difficile du jeu** et de terminer l’aventure dans **son mode le plus compliqué**.
+
+Tu as affronté les épreuves les plus impitoyables, déjoué les pièges et repoussé les limites du jeu.
+
+Peu de joueurs arriveront jusqu’ici.
+
+**Tu n’as pas simplement terminé le jeu.
+Tu l’as maîtrisé.**
+
+Merci d’avoir joué, persévéré et relevé ce défi jusqu’au bout.
+
+🔥 **Tu fais désormais partie des rares joueurs à avoir réussi l’impossible.**
+
+**Félicitations, légende. Ton aventure est terminée.**`)
+	attendreConfirmationLecture()
+	return true
 }
 
 func attendreConfirmationLecture() {
