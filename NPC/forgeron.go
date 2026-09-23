@@ -57,6 +57,10 @@ func Forgeron(c *personnage.Etudiant) {
 			return
 		}
 		r := recettes[n-1]
+		if equipementDejaFabrique(c, r.Nom) {
+			fmt.Println("Cet équipement ne peut être fabriqué qu'une seule fois.")
+			continue
+		}
 
 		if c.Argent < coutFabrication {
 			fmt.Println("Sale pauvre t'as même pas assez, il me faudrait", coutFabrication, "pièces d'or.")
@@ -81,8 +85,20 @@ func Forgeron(c *personnage.Etudiant) {
 			}
 		}
 		AddInventory(c, r.Nom)
+		enregistrerEquipementFabrique(c, r.Nom)
 		fmt.Println(r.Nom, "fabriqué !")
 	}
+}
+
+func equipementDejaFabrique(c *personnage.Etudiant, nom string) bool {
+	return c.EquipementsFabriques != nil && c.EquipementsFabriques[nom]
+}
+
+func enregistrerEquipementFabrique(c *personnage.Etudiant, nom string) {
+	if c.EquipementsFabriques == nil {
+		c.EquipementsFabriques = make(map[string]bool)
+	}
+	c.EquipementsFabriques[nom] = true
 }
 
 func Equiper(c *personnage.Etudiant, nom string) {

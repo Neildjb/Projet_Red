@@ -31,13 +31,17 @@ func Marchand(c *personnage.Etudiant) {
 		}
 
 		item := boutique[n-1]
+		if articleDejaAchete(c, item.Nom) {
+			fmt.Println("Cet article ne peut être acheté qu'une seule fois.")
+			continue
+		}
 		prix := prixActuel(item)
 		if c.Argent < prix {
 			fmt.Println("T'as même pas assez pour " + item.Nom + ", c'est ridicule")
 			continue
 		}
 
-		if AddInventory(c, item.Nom) {
+		if ajouterAchatMarchand(c, item.Nom) {
 			c.Argent -= prix
 			switch item.Nom {
 			case "Potion de soin":
@@ -46,7 +50,7 @@ func Marchand(c *personnage.Etudiant) {
 				nombrePotionsPoison++
 			}
 			fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
-			if item.Nom == "Lot de Kunaï (nouveau sort)" || item.Nom == "Rasengan" {
+			if item.Nom == "Lot de Kunaï (nouveau sort)" || item.Nom == "Rasengan (nouveau sort)" {
 				fmt.Println("Allez dans l'inventaire et utilisez l'objet pour apprendre une nouvelle technique.")
 			}
 		} else {
@@ -58,7 +62,7 @@ func Marchand(c *personnage.Etudiant) {
 
 func AddInventory(c *personnage.Etudiant, item string) bool {
 	doublon := false
-	if item == "Lot de Kunaï (nouveau sort)" || item == "Rasengan" || item == "upgrade1" || item == "upgrade2" {
+	if articleVenduUneSeuleFois(item) {
 
 		for _, v := range c.Inventaire {
 			if v == item {
@@ -72,6 +76,40 @@ func AddInventory(c *personnage.Etudiant, item string) bool {
 	}
 
 	c.Inventaire = append(c.Inventaire, item)
+	return true
+}
+
+func articleVenduUneSeuleFois(item string) bool {
+	switch item {
+	case "Lot de Kunaï (nouveau sort)", "Rasengan (nouveau sort)", "upgradeinventoryslot1", "upgradeinventoryslot2":
+		return true
+	default:
+		return false
+	}
+}
+
+func articleDejaAchete(c *personnage.Etudiant, item string) bool {
+	if !articleVenduUneSeuleFois(item) {
+		return false
+	}
+	return c.AchatsMarchand != nil && c.AchatsMarchand[item]
+}
+
+func enregistrerAchatMarchand(c *personnage.Etudiant, item string) {
+	if c.AchatsMarchand == nil {
+		c.AchatsMarchand = make(map[string]bool)
+	}
+	c.AchatsMarchand[item] = true
+}
+
+func ajouterAchatMarchand(c *personnage.Etudiant, item string) bool {
+	if articleDejaAchete(c, item) {
+		return false
+	}
+	if !AddInventory(c, item) {
+		return false
+	}
+	enregistrerAchatMarchand(c, item)
 	return true
 }
 
@@ -91,13 +129,13 @@ type Item struct {
 
 var boutique = []Item{
 	{Nom: "Lot de Kunaï (nouveau sort)", Prix: 30},
-	{Nom: "Rasengan", Prix: 75},
+	{Nom: "Rasengan (nouveau sort)", Prix: 75},
 	{Nom: "Potion de soin", Prix: 20},
 	{Nom: "Potion de poison", Prix: 25},
 	{Nom: "Potion de guérison du poison", Prix: 30},
 	{Nom: "Potion de PV total", Prix: 60},
-	{Nom: "upgrade1", Prix: 40},
-	{Nom: "upgrade2", Prix: 80},
+	{Nom: "upgradeinventoryslot1", Prix: 40},
+	{Nom: "upgradeinventoryslot2", Prix: 80},
 }
 
 var nombrePotionsSoin int

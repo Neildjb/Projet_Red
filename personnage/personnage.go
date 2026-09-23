@@ -6,20 +6,22 @@ import (
 )
 
 type Etudiant struct {
-	Nom                string
-	Classe             string
-	ExperienceCombat   int
-	MaxVie             int
-	Vie                int
-	Inventaire         []string
-	CapaciteInventaire int
-	Argent             int
-	Equipement         Equipment
-	Skills             []string
-	Poison             bool
-	Hardcore           bool
-	GameOver           bool
-	TutorielFait       bool
+	Nom                  string
+	Classe               string
+	ExperienceCombat     int
+	MaxVie               int
+	Vie                  int
+	Inventaire           []string
+	CapaciteInventaire   int
+	Argent               int
+	Equipement           Equipment
+	Skills               []string
+	AchatsMarchand       map[string]bool
+	EquipementsFabriques map[string]bool
+	Poison               bool
+	Hardcore             bool
+	GameOver             bool
+	TutorielFait         bool
 }
 
 type Equipment struct {
@@ -35,16 +37,53 @@ func InitCharacter(nom, classe string, experienceCombat, maxVie, vie, argent int
 	vie += bonusVie
 
 	return Etudiant{
-		Nom:                nom,
-		Classe:             classe,
-		ExperienceCombat:   experienceCombat,
-		MaxVie:             maxVie,
-		Vie:                vie,
-		Inventaire:         inventaire,
-		CapaciteInventaire: 10,
-		Argent:             argent,
-		Equipement:         equipement,
-		Skills:             skills,
+		Nom:                  nom,
+		Classe:               classe,
+		ExperienceCombat:     experienceCombat,
+		MaxVie:               maxVie,
+		Vie:                  vie,
+		Inventaire:           inventaire,
+		CapaciteInventaire:   10,
+		Argent:               argent,
+		Equipement:           equipement,
+		Skills:               skills,
+		AchatsMarchand:       achatsMarchandDepuisInventaire(inventaire),
+		EquipementsFabriques: equipementsFabriquesDepuisEtat(inventaire, equipement),
+	}
+}
+
+func achatsMarchandDepuisInventaire(inventaire []string) map[string]bool {
+	achats := make(map[string]bool)
+	for _, item := range inventaire {
+		switch item {
+		case "Lot de Kunaï (nouveau sort)", "Rasengan (nouveau sort)", "upgradeinventoryslot1", "upgradeinventoryslot2":
+			achats[item] = true
+		}
+	}
+	return achats
+}
+
+func equipementsFabriquesDepuisEtat(inventaire []string, equipement Equipment) map[string]bool {
+	fabriques := make(map[string]bool)
+	for _, item := range inventaire {
+		if estEquipement(item) {
+			fabriques[item] = true
+		}
+	}
+	for _, item := range []string{equipement.Headgear, equipement.BodyArmor, equipement.LegArmor, equipement.FeetArmor} {
+		if estEquipement(item) {
+			fabriques[item] = true
+		}
+	}
+	return fabriques
+}
+
+func estEquipement(item string) bool {
+	switch item {
+	case "bandeau frontale ninja", "Manteau Akatsuki", "Pantalon des Six Chemins", "Sandales du Shinobi":
+		return true
+	default:
+		return false
 	}
 }
 

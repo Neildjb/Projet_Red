@@ -16,7 +16,6 @@ func AccessInventory(e *personnage.Etudiant) {
 	fmt.Println("Capacité :", len(e.Inventaire), "/", e.CapaciteInventaire)
 	fmt.Println("1 - Supprimer un objet de l'inventaire ")
 	fmt.Println("2 - Utiliser un objet")
-	fmt.Println("3 - Retour")
 	fmt.Println("0 - Retour")
 	for {
 
@@ -60,8 +59,6 @@ func AccessInventory(e *personnage.Etudiant) {
 
 		case "2":
 			utiliserObjet(e)
-		case "3":
-			return
 
 		}
 	}
@@ -103,7 +100,7 @@ func utiliserObjet(e *personnage.Etudiant) {
 		fmt.Println("Cette potion est utilisable uniquement pendant un combat.")
 	case "bandeau frontale ninja", "Manteau Akatsuki", "Pantalon des Six Chemins", "Sandales du Shinobi":
 		npc.Equiper(e, objet)
-	case "upgrade1", "upgrade2":
+	case "upgradeinventoryslot1", "upgradeinventoryslot2":
 		ancienneCapacite := e.CapaciteInventaire
 		fmt.Println(amelioration.UpgradeInventorySlot(e))
 		if e.CapaciteInventaire > ancienneCapacite {
@@ -111,7 +108,7 @@ func utiliserObjet(e *personnage.Etudiant) {
 		}
 	case "Lot de Kunaï (nouveau sort)", "Kunaï":
 		sorts.LearnSpell(e, objet, "Kunaï")
-	case "Rasengan":
+	case "Rasengan", "Rasengan (nouveau sort)":
 		sorts.LearnSpell(e, objet, "Rasengan")
 	case "Sharingan":
 		sorts.LearnSpell(e, objet, "Sharingan")

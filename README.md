@@ -42,13 +42,14 @@ Les Sandales du Shinobi se fabriquent chez le forgeron avec 4 `queue de demon`.
 
 ### Classes
 
-| Classe | Difficulté | PV de départ |
-| --- | --- | ---: |
-| Kage | Très facile | 300 |
-| Jonin | Facile | 150 |
-| Genin | Moyenne | 100 |
-| Ninja | Très difficile | 50 |
-| Naruto_Prime | Hardcore | 30 |
+| Classe | Difficulté | PV de départ | Image du personnage | Ennemis combattus |
+| --- | --- | ---: | --- | --- |
+| Kage | Très facile | 300 | `assets/background/Naruto_demon.png` | Pain, Itachi, Obito, Madara |
+| Jonin | Facile | 150 | `assets/background/sasuke.png` | Deidara, Kisame, Sasori, Orochimaru |
+| Genin | Moyenne | 100 | `assets/background/RockLee.png` | Asuma, Gaara, Shino, Kakshi |
+| Ninja | Très difficile | 50 | `assets/background/Naruto_Prime.png` | Ninja déserteur, Sai, Yamato, Danzo |
+| Naruto_Prime | Hardcore | 30 | `assets/background/Naruto_Prime.png` | Neil, Andy, Mathias, Maxime_boss |
+| Admin4416 | Spéciale | 10 000 | `assets/background/Naruto_Prime.png` | Neil, Andy, Mathias, Maxime_boss |
 
 Le mode `Naruto_Prime` est un mode hardcore : une seule mort est décisive et la partie s'arrête définitivement. C'est ici que le jeu devient vraiment intéressant. Bonne chance pour terminer le jeu dans cet état !
 

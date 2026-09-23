@@ -8,7 +8,15 @@ import (
 	"fmt"
 )
 
-func Menu(c *personnage.Etudiant) {
+type Resultat int
+
+const (
+	RetourMenu Resultat = iota
+	RecommencerJeu
+	QuitterJeu
+)
+
+func Menu(c *personnage.Etudiant) Resultat {
 	continuer := true
 
 	for continuer {
@@ -23,6 +31,7 @@ func Menu(c *personnage.Etudiant) {
 		fmt.Println("6 - Arène de combat")
 		fmt.Println("7 - École des classes")
 		fmt.Println("8 - Quêtes")
+		fmt.Println("9 - Quitter ou recommencer le jeu")
 		fmt.Println("\nChoisis une action :")
 
 		var choix string
@@ -32,6 +41,7 @@ func Menu(c *personnage.Etudiant) {
 		case "1":
 			fmt.Println("\n--- Informations du personnage ---")
 			personnage.DisplayInfo(*c)
+			attendreConfirmationLecture()
 		case "2":
 			fmt.Println("\n--- Inventaire ---")
 			inventaire.AccessInventory(c)
@@ -45,23 +55,48 @@ func Menu(c *personnage.Etudiant) {
 			fmt.Println("\n--- Tutoriel de combat ---")
 			combat.TrainingFight(c)
 			if c.GameOver {
-				return
+				return QuitterJeu
 			}
 		case "6":
 			fmt.Println("\n--- Arène de combat ---")
 			arenaMenu(c)
 			if c.GameOver {
-				return
+				return QuitterJeu
 			}
 		case "7":
 			fmt.Println("\n--- École des classes ---")
 			ecole(c)
 			if c.GameOver {
-				return
+				return QuitterJeu
 			}
 		case "8":
 			fmt.Println("\n--- Quêtes ---")
 			quetesFinJeu(*c)
+		case "9":
+			return menuFinJeu()
+		default:
+			fmt.Println("Choix invalide, réessaie.")
+		}
+	}
+	return RetourMenu
+}
+
+func menuFinJeu() Resultat {
+	for {
+		fmt.Println("\n=== Quitter le jeu ===")
+		fmt.Println("1 - Quitter réellement le jeu")
+		fmt.Println("2 - Recommencer depuis le début")
+		fmt.Println("0 - Retour au menu")
+
+		var choix string
+		fmt.Scan(&choix)
+		switch choix {
+		case "1":
+			return QuitterJeu
+		case "2":
+			return RecommencerJeu
+		case "0":
+			return RetourMenu
 		default:
 			fmt.Println("Choix invalide, réessaie.")
 		}
@@ -90,18 +125,30 @@ func quetesFinJeu(joueur personnage.Etudiant) {
 	if capaciteComplete && argentComplete && experienceComplete && sortsComplets && tropheeObtenu && equipementComplet {
 		fmt.Println("\nFélicitations ! Tu as terminé le jeu et tout découvert.")
 		fmt.Println("1 - Afficher les crédits")
-		fmt.Println("2 - Retour")
-		fmt.Println("0 - Retour")
+		var choix string
+		for choix != "1" {
+			fmt.Scan(&choix)
+			if choix != "1" {
+				fmt.Println("Choix invalide. Tape 1 pour continuer.")
+			}
+		}
+		affiche_credit()
+		attendreConfirmationLecture()
+	} else {
+		fmt.Println("\nToutes les quêtes ne sont pas encore terminées.")
+		attendreConfirmationLecture()
+	}
+}
+
+func attendreConfirmationLecture() {
+	for {
+		fmt.Println("\n1 - J'ai lu, retourner au menu")
 		var choix string
 		fmt.Scan(&choix)
 		if choix == "1" {
-			affiche_credit()
+			return
 		}
-	} else {
-		fmt.Println("\nToutes les quêtes ne sont pas encore terminées.")
-		fmt.Println("0 - Retour")
-		var choix string
-		fmt.Scan(&choix)
+		fmt.Println("Choix invalide. Tape 1 pour continuer.")
 	}
 }
 
@@ -268,12 +315,11 @@ func ecole(joueur *personnage.Etudiant) {
 
 func arenaMenu(joueur *personnage.Etudiant) {
 	for {
-		fmt.Println("\n=== Arène de combat ===")
-		fmt.Println("1 - Ninjas déserteurs (expérience >= 1)")
-		fmt.Println("2 - Golems de chakra (expérience >= 3)")
-		fmt.Println("3 - Démon à queue (expérience >= 5)")
-		fmt.Println("4 - Madara (expérience >= 10)")
-		fmt.Println("5 - Retour au menu")
+		fmt.Println("\n=== Partir à l'aventure ===")
+		fmt.Println("1 - Partir au lac (expérience >= 1)")
+		fmt.Println("2 - Partir en forêt (expérience >= 3)")
+		fmt.Println("3 - Partir en grotte (expérience >= 5)")
+		fmt.Println("4 - Partir en haut de la montagne (expérience >= 10)")
 		fmt.Println("0 - Retour au menu")
 
 		var choix string
@@ -294,7 +340,7 @@ func arenaMenu(joueur *personnage.Etudiant) {
 		case "4":
 			monstre = personnage.Init_Madara()
 			seuilExperience = 10
-		case "0", "5":
+		case "0":
 			return
 		default:
 			fmt.Println("Choix invalide, réessaie.")

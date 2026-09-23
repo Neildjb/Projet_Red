@@ -9,6 +9,8 @@ import (
 	"fmt"
 )
 
+const degatsPoisonParTour = 10
+
 func displayCombatStatus(monstre *personnage.Monster, joueur *personnage.Etudiant) {
 	fmt.Println("Vie de", joueur.Nom, ":", joueur.Vie, "/", joueur.MaxVie)
 	fmt.Println("Vie de", monstre.Nom, ":", monstre.Vie, "/", monstre.Max_vie)
@@ -61,22 +63,23 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 			fmt.Println(monstre.Nom, "empoisonne", joueur.Nom, "au tour", tour, ".")
 		}
 		if joueur.Poison {
-			joueur.Vie -= 5
+			joueur.Vie -= degatsPoisonParTour
 			if joueur.Vie < 0 {
 				joueur.Vie = 0
 			}
-			fmt.Println(joueur.Nom, "perd 5 PV à cause du poison.")
+			fmt.Println(joueur.Nom, "perd", degatsPoisonParTour, "PV à cause du poison.")
 			if joueur.Vie == 0 {
 				gestionmort.Isdead(joueur)
-				break
+				fmt.Println(joueur.Nom, "a perdu le combat.")
+				return false
 			}
 		}
 		if monstre.Poison {
-			monstre.Vie -= 5
+			monstre.Vie -= degatsPoisonParTour
 			if monstre.Vie < 0 {
 				monstre.Vie = 0
 			}
-			fmt.Println(monstre.Nom, "perd 5 PV à cause du poison.")
+			fmt.Println(monstre.Nom, "perd", degatsPoisonParTour, "PV à cause du poison.")
 			if monstre.Vie == 0 {
 				fmt.Println(monstre.Nom, "est vaincu !")
 				collectMonsterDrop(monstre, joueur)
@@ -99,7 +102,10 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 			joueur.Vie = 0
 		}
 		fmt.Println(monstre.Nom, "inflige", monstre.Points_attaque, "dégâts à", joueur.Nom)
-		gestionmort.Isdead(joueur)
+		if gestionmort.Isdead(joueur) {
+			fmt.Println(joueur.Nom, "a perdu le combat.")
+			return false
+		}
 		tour++
 	}
 

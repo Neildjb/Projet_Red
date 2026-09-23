@@ -34,9 +34,9 @@ func (j *Jeu) chargerSprites() {
 		"Kage":         "background/Naruto_demon.png",
 		"Jonin":        "background/sasuke.png",
 		"Genin":        "background/RockLee.png",
-		"Ninja":        "background/Naruto_prime.png",
-		"Naruto_Prime": "background/Naruto_prime.png",
-		"Admin4416":    "background/Naruto_prime.png",
+		"Ninja":        "background/Naruto_Prime.png",
+		"Naruto_Prime": "background/Naruto_Prime.png",
+		"Admin4416":    "background/Naruto_Prime.png",
 	}
 	j.spritesJoueurs = make(map[string]*ebiten.Image)
 	for classe, fichier := range nomsFichiersJoueurs {
@@ -49,10 +49,10 @@ func (j *Jeu) chargerSprites() {
 		"Andy|Naruto_Prime":        "Andy.png",
 		"Neil|Naruto_Prime":        "Neil.png",
 
-		"Neil|Admin4416": "Neil.png",
-		"Andy|Admin4416":     "Andy.png",
-		"Mathias|Admin4416":        "Mathias.png",
-		"Maxime_boss|Admin4416":        "Maxime_boss.png",
+		"Neil|Admin4416":        "Neil.png",
+		"Andy|Admin4416":        "Andy.png",
+		"Mathias|Admin4416":     "Mathias.png",
+		"Maxime_boss|Admin4416": "Maxime_boss.png",
 
 		"Pain|Kage":   "Pain.png",
 		"Itachi|Kage": "Itachi.png",
