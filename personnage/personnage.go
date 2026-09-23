@@ -100,6 +100,42 @@ type Monster struct {
 	Poison         bool
 }
 
+func NomMonstrePourClasse(nomMonstre, classe string) string {
+	noms := map[string]map[string]string{
+		"Kage": {
+			"Ninjas déserteurs": "Pain",
+			"Golems de chakra":  "Itachi",
+			"Demon a queue":     "Obito",
+			"Madara":            "Madara",
+		},
+		"Jonin": {
+			"Ninjas déserteurs": "Deidara",
+			"Golems de chakra":  "Kisame",
+			"Demon a queue":     "Sasori",
+			"Madara":            "Orochimaru",
+		},
+		"Genin": {
+			"Ninjas déserteurs": "Asuma",
+			"Golems de chakra":  "Gaara",
+			"Demon a queue":     "Shino",
+			"Madara":            "Kakshi",
+		},
+		"Ninja": {
+			"Ninjas déserteurs": "Ninja déserteur",
+			"Golems de chakra":  "Sai",
+			"Demon a queue":     "Yamato",
+			"Madara":            "Danzo",
+		},
+	}
+
+	if nomsParClasse, ok := noms[classe]; ok {
+		if nom, ok := nomsParClasse[nomMonstre]; ok {
+			return nom
+		}
+	}
+	return nomMonstre
+}
+
 func Init_Maxime() Monster {
 	return Monster{
 		Nom:            "Maxime",

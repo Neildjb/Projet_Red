@@ -44,26 +44,26 @@ func (j *Jeu) chargerSprites() {
 	}
 
 	nomsFichiersMonstres := map[string]string{
-		"Ninjas déserteurs|Kage": "Pain.png",
-		"Golems de chakra|Kage":  "Itachi.png",
-		"Demon a queue|Kage":     "Obito.png",
-		"Madara|Kage":            "Madara.png",
+		"Pain|Kage":   "Pain.png",
+		"Itachi|Kage": "Itachi.png",
+		"Obito|Kage":  "Obito.png",
+		"Madara|Kage": "Madara.png",
 
-		"Ninjas déserteurs|Jonin": "Deidara.png",
-		"Golems de chakra|Jonin":  "Kisame.png",
-		"Demon a queue|Jonin":     "Sasori.png",
-		"Madara|Jonin":            "Orochimaru.png",
+		"Deidara|Jonin":    "Deidara.png",
+		"Kisame|Jonin":     "Kisame.png",
+		"Sasori|Jonin":     "Sasori.png",
+		"Orochimaru|Jonin": "Orochimaru.png",
 
-		"Ninjas déserteurs|Genin": "Asuma.png",
-		"Golems de chakra|Genin":  "Gaara.png",
-		"Demon a queue|Genin":     "Shino.png",
-		"Madara|Genin":            "Kakshi.png",
+		"Asuma|Genin":  "Asuma.png",
+		"Gaara|Genin":  "Gaara.png",
+		"Shino|Genin":  "Shino.png",
+		"Kakshi|Genin": "Kakshi.png",
 
-		"Maxime":                  "maxime.png",
-		"Ninjas déserteurs|Ninja": "NINJA_deserteur.png",
-		"Golems de chakra|Ninja":  "SAI.png",
-		"Demon a queue|Ninja":     "Yamato.png",
-		"Madara|Ninja":            "Danzo.png",
+		"Maxime":                "maxime.png",
+		"Ninja déserteur|Ninja": "NINJA_deserteur.png",
+		"Sai|Ninja":             "SAI.png",
+		"Yamato|Ninja":          "Yamato.png",
+		"Danzo|Ninja":           "Danzo.png",
 	}
 	j.spritesMonstres = make(map[string]*ebiten.Image)
 	for nom, fichier := range nomsFichiersMonstres {

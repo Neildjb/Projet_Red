@@ -45,16 +45,18 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 		joueur.Poison = false
 	}()
 
+	nomMonstreOriginal := monstre.Nom
+	monstre.Nom = personnage.NomMonstrePourClasse(nomMonstreOriginal, joueur.Classe)
 	tour := 1
 
 	fmt.Println("Un", monstre.Nom, "apparaît !")
-	if monstre.Nom == "Demon a queue" {
+	if nomMonstreOriginal == "Demon a queue" {
 		joueur.Poison = true
 		fmt.Println(monstre.Nom, "empoisonne", joueur.Nom, "dès le début du combat.")
 	}
 
 	for joueur.Vie > 0 && monstre.Vie > 0 {
-		if monstre.Nom == "Madara" && tour%3 == 0 {
+		if nomMonstreOriginal == "Madara" && tour%3 == 0 {
 			joueur.Poison = true
 			fmt.Println(monstre.Nom, "empoisonne", joueur.Nom, "au tour", tour, ".")
 		}
