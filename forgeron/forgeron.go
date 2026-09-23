@@ -1,8 +1,8 @@
 package forgeron
 
 import (
+	npc "Projet_Red/NPC"
 	"Projet_Red/personnage"
-	"Projet_Red/tache7101111suite"
 	"fmt"
 	"strconv"
 )
@@ -37,10 +37,10 @@ func Forgeron(c *personnage.Etudiant) {
 		fmt.Println("\nIl te reste", c.Argent, "pièces d'or. Chaque fabrication coûte", coutFabrication, "pièces.")
 		for i, r := range recettes {
 			fmt.Printf("%d - %s il te faudra : ", i+1, r.Nom)
-for ressource, quantite := range r.Ressources {
-    fmt.Printf("%d %s ", quantite, ressource)
-}
-fmt.Println()
+			for ressource, quantite := range r.Ressources {
+				fmt.Printf("%d %s ", quantite, ressource)
+			}
+			fmt.Println()
 		}
 		fmt.Println("0 - Retour")
 
@@ -82,7 +82,7 @@ fmt.Println()
 				retirerUn(c, nom)
 			}
 		}
-		tache7101111suite.AddInventory(c, r.Nom)
+		npc.AddInventory(c, r.Nom)
 		fmt.Println(r.Nom, "fabriqué !")
 	}
 }
@@ -117,7 +117,7 @@ func Equiper(c *personnage.Etudiant, nom string) {
 	ancien := *emplacement
 	if ancien != "" && ancien != "rien" {
 		c.MaxVie -= pieces[ancien].Bonus
-		tache7101111suite.AddInventory(c, ancien)
+		npc.AddInventory(c, ancien)
 	}
 
 	*emplacement = nom
