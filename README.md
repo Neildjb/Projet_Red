@@ -70,8 +70,8 @@ Projet réalisé au Campus Ynov Bordeaux, Bachelor 1, 2026.
 ### Équipe de développement
 
 - Mathias Fontagne : développement, gameplay et conception
-- [Nom de l'élève 2]
-- [Nom de l'élève 3]
+- Neil Djebali : développement, gameplay et conception
+- Andy Abbas : développement, gameplay et conception
 
 ### Mentors
 
