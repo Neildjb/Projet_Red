@@ -79,14 +79,8 @@ func lancerJeuTerminal() {
 			}
 			fmt.Println("\n========================================")
 			fmt.Println("          VOTRE PERSONNAGE")
-<<<<<<< HEAD:main.go
-			fmt.Println("========================================\n")
-			personnage.DisplayInfo(*etat.JoueurActuel)
-=======
 			fmt.Println("========================================")
-			fmt.Println()
-			personnage.DisplayInfo(c1)
->>>>>>> 4487d01a5fd8bdd9c86ac19c654c3be66ae64931:main/main.go
+			personnage.DisplayInfo(*etat.JoueurActuel)
 			fmt.Println()
 			menu.Menu(etat.JoueurActuel)
 			return

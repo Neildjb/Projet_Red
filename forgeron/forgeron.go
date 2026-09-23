@@ -1,6 +1,7 @@
 package npc
 
 import (
+	npc "Projet_Red/NPC"
 	"Projet_Red/personnage"
 	"fmt"
 	"strconv"
@@ -78,7 +79,7 @@ func Forgeron(c *personnage.Etudiant) {
 				retirerUn(c, nom)
 			}
 		}
-		AddInventory(c, r.Nom)
+		npc.AddInventory(c, r.Nom)
 		fmt.Println(r.Nom, "fabriqué !")
 	}
 }
@@ -112,8 +113,7 @@ func Equiper(c *personnage.Etudiant, nom string) {
 	ancien := *emplacement
 	if ancien != "" && ancien != "rien" {
 		c.MaxVie -= pieces[ancien].Bonus
-		c.Vie -= pieces[ancien].Bonus
-		AddInventory(c, ancien)
+		npc.AddInventory(c, ancien)
 	}
 
 	*emplacement = nom
