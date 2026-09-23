@@ -102,6 +102,18 @@ type Monster struct {
 
 func NomMonstrePourClasse(nomMonstre, classe string) string {
 	noms := map[string]map[string]string{
+		"Naruto_Prime": {
+			"Ninjas déserteurs": "Neil",
+			"Golems de chakra":  "Andy",
+			"Demon a queue":     "Mathias",
+			"Madara":            "Maxime_boss",
+		},
+		"Admin4416": {
+			"Ninjas déserteurs": "Neil",
+			"Golems de chakra":  "Andy",
+			"Demon a queue":     "Mathias",
+			"Madara":            "Maxime_boss",
+		},
 		"Kage": {
 			"Ninjas déserteurs": "Pain",
 			"Golems de chakra":  "Itachi",

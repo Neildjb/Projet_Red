@@ -44,6 +44,16 @@ func (j *Jeu) chargerSprites() {
 	}
 
 	nomsFichiersMonstres := map[string]string{
+		"Maxime_boss|Naruto_Prime": "Maxime_boss.png",
+		"Mathias|Naruto_Prime":     "Mathias.png",
+		"Andy|Naruto_Prime":        "Andy.png",
+		"Neil|Naruto_Prime":        "Neil.png",
+
+		"Neil|Admin4416": "Neil.png",
+		"Andy|Admin4416":     "Andy.png",
+		"Mathias|Admin4416":        "Mathias.png",
+		"Maxime_boss|Admin4416":        "Maxime_boss.png",
+
 		"Pain|Kage":   "Pain.png",
 		"Itachi|Kage": "Itachi.png",
 		"Obito|Kage":  "Obito.png",
