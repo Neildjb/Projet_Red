@@ -7,7 +7,6 @@ import (
 	"Projet_Red/personnage"
 	"fmt"
 	"log"
-
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
