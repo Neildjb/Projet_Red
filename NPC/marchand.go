@@ -46,6 +46,9 @@ func Marchand(c *personnage.Etudiant) {
 				nombrePotionsPoison++
 			}
 			fmt.Println("C'est une bonne affaire d'acheter " + item.Nom)
+			if item.Nom == "Lot de Kunaï (nouveau sort)" || item.Nom == "Rasengan" {
+				fmt.Println("Allez dans l'inventaire et utilisez l'objet pour apprendre une nouvelle technique.")
+			}
 		} else {
 			fmt.Println("Il y'en a déja un autre ne sois pas gourmand")
 		}
@@ -55,7 +58,7 @@ func Marchand(c *personnage.Etudiant) {
 
 func AddInventory(c *personnage.Etudiant, item string) bool {
 	doublon := false
-	if item == "Kunaï" || item == "Rasengan" || item == "upgrade1" || item == "upgrade2" {
+	if item == "Lot de Kunaï (nouveau sort)" || item == "Rasengan" || item == "upgrade1" || item == "upgrade2" {
 
 		for _, v := range c.Inventaire {
 			if v == item {
@@ -87,12 +90,12 @@ type Item struct {
 }
 
 var boutique = []Item{
-	{Nom: "Kunaï", Prix: 30},
+	{Nom: "Lot de Kunaï (nouveau sort)", Prix: 30},
 	{Nom: "Rasengan", Prix: 75},
 	{Nom: "Potion de soin", Prix: 20},
 	{Nom: "Potion de poison", Prix: 25},
 	{Nom: "Potion de guérison du poison", Prix: 30},
-	{Nom: "Potion de PV total", Prix: 90},
+	{Nom: "Potion de PV total", Prix: 60},
 	{Nom: "upgrade1", Prix: 40},
 	{Nom: "upgrade2", Prix: 80},
 }

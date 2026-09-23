@@ -16,7 +16,8 @@ type Recette struct {
 var recettes = []Recette{
 	{Nom: "bandeau frontale ninja", Ressources: map[string]int{"Baton de bois": 1}},
 	{Nom: "Manteau Akatsuki", Ressources: map[string]int{"fer": 2}},
-	{Nom: "Bottes de Shinobi", Ressources: map[string]int{"queue de demon": 3}},
+	{Nom: "Pantalon des Six Chemins", Ressources: map[string]int{"chakra": 3}},
+	{Nom: "Sandales du Shinobi", Ressources: map[string]int{"queue de demon": 4}},
 }
 
 type piece struct {
@@ -25,9 +26,10 @@ type piece struct {
 }
 
 var pieces = map[string]piece{
-	"bandeau frontale ninja": {Slot: "tete", Bonus: 15},
-	"Manteau Akatsuki":       {Slot: "torse", Bonus: 20},
-	"Bottes de Shinobi":      {Slot: "pieds", Bonus: 25},
+	"bandeau frontale ninja":   {Slot: "tete", Bonus: 15},
+	"Manteau Akatsuki":         {Slot: "torse", Bonus: 20},
+	"Pantalon des Six Chemins": {Slot: "jambes", Bonus: 25},
+	"Sandales du Shinobi":      {Slot: "pieds", Bonus: 30},
 }
 
 func Forgeron(c *personnage.Etudiant) {
@@ -100,6 +102,8 @@ func Equiper(c *personnage.Etudiant, nom string) {
 		emplacement = &c.Equipement.Headgear
 	case "torse":
 		emplacement = &c.Equipement.BodyArmor
+	case "jambes":
+		emplacement = &c.Equipement.LegArmor
 	case "pieds":
 		emplacement = &c.Equipement.FeetArmor
 	}

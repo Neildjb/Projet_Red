@@ -23,7 +23,6 @@ func Menu(c *personnage.Etudiant) {
 		fmt.Println("6 - Arène de combat")
 		fmt.Println("7 - École des classes")
 		fmt.Println("8 - Quêtes")
-		fmt.Println("9 - Quitter")
 		fmt.Println("\nChoisis une action :")
 
 		var choix string
@@ -63,9 +62,6 @@ func Menu(c *personnage.Etudiant) {
 		case "8":
 			fmt.Println("\n--- Quêtes ---")
 			quetesFinJeu(*c)
-		case "9":
-			fmt.Println("\nÀ bientôt, shinobi !")
-			continuer = false
 		default:
 			fmt.Println("Choix invalide, réessaie.")
 		}
@@ -80,7 +76,7 @@ func quetesFinJeu(joueur personnage.Etudiant) {
 	sortsComplets := nombreSorts == 4
 	tropheeObtenu := possedeObjet(joueur, "Trophee en or")
 	nombreEquipements := nombreDEquipements(joueur)
-	equipementComplet := nombreEquipements == 3
+	equipementComplet := nombreEquipements == 4
 
 	fmt.Println("\n=== Quêtes ===")
 	fmt.Println("Ces quêtes représentent tout ce qu'il faut découvrir pour terminer le jeu.")
@@ -89,12 +85,13 @@ func quetesFinJeu(joueur personnage.Etudiant) {
 	afficherQuete("Expérience de combat", fmt.Sprintf("%d / 30 minimum", joueur.ExperienceCombat), experienceComplete)
 	afficherQuete("Sorts possédés", fmt.Sprintf("%d / 4", nombreSorts), sortsComplets)
 	afficherQuete("Trophée final", fmt.Sprintf("%d / 1", boolVersNombre(tropheeObtenu)), tropheeObtenu)
-	afficherQuete("Équipements équipés", fmt.Sprintf("%d / 3", nombreEquipements), equipementComplet)
+	afficherQuete("Équipements équipés", fmt.Sprintf("%d / 4", nombreEquipements), equipementComplet)
 
 	if capaciteComplete && argentComplete && experienceComplete && sortsComplets && tropheeObtenu && equipementComplet {
 		fmt.Println("\nFélicitations ! Tu as terminé le jeu et tout découvert.")
 		fmt.Println("1 - Afficher les crédits")
 		fmt.Println("2 - Retour")
+		fmt.Println("0 - Retour")
 		var choix string
 		fmt.Scan(&choix)
 		if choix == "1" {
@@ -102,6 +99,9 @@ func quetesFinJeu(joueur personnage.Etudiant) {
 		}
 	} else {
 		fmt.Println("\nToutes les quêtes ne sont pas encore terminées.")
+		fmt.Println("0 - Retour")
+		var choix string
+		fmt.Scan(&choix)
 	}
 }
 
@@ -174,6 +174,9 @@ func nombreDEquipements(joueur personnage.Etudiant) int {
 	if joueur.Equipement.BodyArmor != "" && joueur.Equipement.BodyArmor != "rien" {
 		nombre++
 	}
+	if joueur.Equipement.LegArmor != "" && joueur.Equipement.LegArmor != "rien" {
+		nombre++
+	}
 	if joueur.Equipement.FeetArmor != "" && joueur.Equipement.FeetArmor != "rien" {
 		nombre++
 	}
@@ -244,6 +247,7 @@ func ecole(joueur *personnage.Etudiant) {
 	var choix string
 	fmt.Println("1 - Entrer dans l'école")
 	fmt.Println("2 - Retour")
+	fmt.Println("0 - Retour")
 	fmt.Scanln(&choix)
 	if choix != "1" {
 		return
@@ -270,6 +274,7 @@ func arenaMenu(joueur *personnage.Etudiant) {
 		fmt.Println("3 - Démon à queue (expérience >= 5)")
 		fmt.Println("4 - Madara (expérience >= 10)")
 		fmt.Println("5 - Retour au menu")
+		fmt.Println("0 - Retour au menu")
 
 		var choix string
 		fmt.Scanln(&choix)
@@ -289,7 +294,7 @@ func arenaMenu(joueur *personnage.Etudiant) {
 		case "4":
 			monstre = personnage.Init_Madara()
 			seuilExperience = 10
-		case "5":
+		case "0", "5":
 			return
 		default:
 			fmt.Println("Choix invalide, réessaie.")

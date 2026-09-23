@@ -17,13 +17,15 @@ func AccessInventory(e *personnage.Etudiant) {
 	fmt.Println("1 - Supprimer un objet de l'inventaire ")
 	fmt.Println("2 - Utiliser un objet")
 	fmt.Println("3 - Retour")
+	fmt.Println("0 - Retour")
 	for {
 
-		
 		var choix string
 		fmt.Scanln(&choix)
 
 		switch choix {
+		case "0":
+			return
 		case "1":
 			if len(e.Inventaire) == 0 {
 				fmt.Println("Votre inventaire est vide.")
@@ -33,10 +35,14 @@ func AccessInventory(e *personnage.Etudiant) {
 			for i, r := range e.Inventaire {
 				fmt.Println(strconv.Itoa(i+1) + ": " + r)
 			}
+			fmt.Println("0 - Retour")
 
 			for {
 				var choix_sup string
 				fmt.Scanln(&choix_sup)
+				if choix_sup == "0" {
+					return
+				}
 				n, err := strconv.Atoi(choix_sup)
 				if err != nil || n < 1 || n > len(e.Inventaire) {
 					fmt.Println("Ce n'est pas au menu, gamin.")
@@ -44,7 +50,7 @@ func AccessInventory(e *personnage.Etudiant) {
 
 				} else {
 
-					fmt.Println("Je vais retirer " + e.Inventaire[n-1] +" de l'inventaire")
+					fmt.Println("Je vais retirer " + e.Inventaire[n-1] + " de l'inventaire")
 					npc.RemoveInventory(e, e.Inventaire[n-1])
 					fmt.Println(e.Inventaire)
 					return
@@ -72,9 +78,13 @@ func utiliserObjet(e *personnage.Etudiant) {
 	for i, objet := range e.Inventaire {
 		fmt.Printf("%d - %s\n", i+1, objet)
 	}
+	fmt.Println("0 - Retour")
 
 	var choix string
 	fmt.Scanln(&choix)
+	if choix == "0" {
+		return
+	}
 	n, err := strconv.Atoi(choix)
 	if err != nil || n < 1 || n > len(e.Inventaire) {
 		fmt.Println("Choix invalide.")
@@ -91,7 +101,7 @@ func utiliserObjet(e *personnage.Etudiant) {
 		*e = potions.FullHealthPot(*e)
 	case "Potion de guérison du poison":
 		fmt.Println("Cette potion est utilisable uniquement pendant un combat.")
-	case "bandeau frontale ninja", "Manteau Akatsuki", "Bottes de Shinobi":
+	case "bandeau frontale ninja", "Manteau Akatsuki", "Pantalon des Six Chemins", "Sandales du Shinobi":
 		npc.Equiper(e, objet)
 	case "upgrade1", "upgrade2":
 		ancienneCapacite := e.CapaciteInventaire
@@ -99,7 +109,7 @@ func utiliserObjet(e *personnage.Etudiant) {
 		if e.CapaciteInventaire > ancienneCapacite {
 			npc.RemoveInventory(e, objet)
 		}
-	case "Kunaï":
+	case "Lot de Kunaï (nouveau sort)", "Kunaï":
 		sorts.LearnSpell(e, objet, "Kunaï")
 	case "Rasengan":
 		sorts.LearnSpell(e, objet, "Rasengan")

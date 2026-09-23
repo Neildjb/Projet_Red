@@ -36,6 +36,7 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 	equipement := personnage.Equipment{
 		Headgear:  "rien",
 		BodyArmor: "rien",
+		LegArmor:  "rien",
 		FeetArmor: "rien",
 	}
 	argent := 65
@@ -78,7 +79,8 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 			personnage.Equipment{
 				Headgear:  "bandeau frontale ninja",
 				BodyArmor: "Manteau Akatsuki",
-				FeetArmor: "Bottes de Shinobi",
+				LegArmor:  "Pantalon des Six Chemins",
+				FeetArmor: "Sandales du Shinobi",
 			},
 			[]string{"Coup de poing", "Kunaï", "Rasengan", "Sharingan"},
 		)

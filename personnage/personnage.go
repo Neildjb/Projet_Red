@@ -19,15 +19,21 @@ type Etudiant struct {
 	Poison             bool
 	Hardcore           bool
 	GameOver           bool
+	TutorielFait       bool
 }
 
 type Equipment struct {
 	Headgear  string
 	BodyArmor string
+	LegArmor  string
 	FeetArmor string
 }
 
 func InitCharacter(nom, classe string, experienceCombat, maxVie, vie, argent int, inventaire []string, equipement Equipment, skills []string) Etudiant {
+	bonusVie := bonusEquipement(equipement.Headgear) + bonusEquipement(equipement.BodyArmor) + bonusEquipement(equipement.LegArmor) + bonusEquipement(equipement.FeetArmor)
+	maxVie += bonusVie
+	vie += bonusVie
+
 	return Etudiant{
 		Nom:                nom,
 		Classe:             classe,
@@ -51,10 +57,28 @@ func DisplayInfo(c Etudiant) {
 	fmt.Println("Capacité inventaire :", len(c.Inventaire), "/", c.CapaciteInventaire)
 	fmt.Println("Argent :", c.Argent)
 	fmt.Println("Équipement :")
-	fmt.Println("  Tête :", c.Equipement.Headgear)
-	fmt.Println("  Corps :", c.Equipement.BodyArmor)
-	fmt.Println("  Pieds :", c.Equipement.FeetArmor)
+	fmt.Println("  Tête :", afficherEquipement(c.Equipement.Headgear))
+	fmt.Println("  Corps :", afficherEquipement(c.Equipement.BodyArmor))
+	fmt.Println("  Jambes :", afficherEquipement(c.Equipement.LegArmor))
+	fmt.Println("  Pieds :", afficherEquipement(c.Equipement.FeetArmor))
 	fmt.Println("Compétences :", strings.Join(c.Skills, ", "))
+}
+
+func afficherEquipement(nom string) string {
+	bonus := bonusEquipement(nom)
+	if bonus == 0 || nom == "" || nom == "rien" {
+		return nom
+	}
+	return fmt.Sprintf("%s (+%d PV)", nom, bonus)
+}
+
+func bonusEquipement(nom string) int {
+	return map[string]int{
+		"bandeau frontale ninja":   15,
+		"Manteau Akatsuki":         20,
+		"Pantalon des Six Chemins": 25,
+		"Sandales du Shinobi":      30,
+	}[nom]
 }
 
 func AjouterItem(c *Etudiant, item string) {
@@ -79,8 +103,8 @@ type Monster struct {
 func Init_Maxime() Monster {
 	return Monster{
 		Nom:            "Maxime",
-		Max_vie:        40,
-		Vie:            40,
+		Max_vie:        35,
+		Vie:            35,
 		Points_attaque: 10,
 		Drop:           []string{"Baton de bois"},
 		ArgentDrop:     10,
@@ -103,9 +127,9 @@ func Init_Ninjas_déserteurs() Monster {
 func Init_Golems_de_chakra() Monster {
 	return Monster{
 		Nom:            "Golems de chakra",
-		Max_vie:        80,
-		Vie:            80,
-		Points_attaque: 15,
+		Max_vie:        85,
+		Vie:            85,
+		Points_attaque: 20,
 		Drop:           []string{"chakra"},
 		ArgentDrop:     45,
 		ExperienceDrop: 1,
@@ -115,11 +139,11 @@ func Init_Golems_de_chakra() Monster {
 func Init_Demon_a_queue() Monster {
 	return Monster{
 		Nom:            "Demon a queue",
-		Max_vie:        100,
-		Vie:            100,
+		Max_vie:        120,
+		Vie:            120,
 		Points_attaque: 25,
 		Drop:           []string{"queue de demon"},
-		ArgentDrop:     50,
+		ArgentDrop:     65,
 		ExperienceDrop: 2,
 	}
 }

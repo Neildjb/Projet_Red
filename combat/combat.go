@@ -115,11 +115,18 @@ func inventoryTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) boo
 	for numero, objet := range joueur.Inventaire {
 		fmt.Printf("%d - %s\n", numero+1, objet)
 	}
+	fmt.Println("0 - Retour")
 
 	var choixObjet int
-	for choixObjet < 1 || choixObjet > len(joueur.Inventaire) {
+	for {
 		fmt.Print("Choisissez un objet : ")
 		fmt.Scan(&choixObjet)
+		if choixObjet == 0 {
+			return false
+		}
+		if choixObjet >= 1 && choixObjet <= len(joueur.Inventaire) {
+			break
+		}
 		if choixObjet < 1 || choixObjet > len(joueur.Inventaire) {
 			fmt.Println("Choix invalide, choisissez un objet dans la liste.")
 		}
@@ -175,13 +182,23 @@ func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) boo
 			for numero, sort := range joueur.Skills {
 				fmt.Printf("%d - %-20s %d dégâts\n", numero+1, sort, sorts.SpellDamage(sort))
 			}
+			fmt.Println("0 - Retour")
 
 			var choixSort int
-			for choixSort < 1 || choixSort > len(joueur.Skills) {
+			for {
 				fmt.Scan(&choixSort)
+				if choixSort == 0 {
+					break
+				}
+				if choixSort >= 1 && choixSort <= len(joueur.Skills) {
+					break
+				}
 				if choixSort < 1 || choixSort > len(joueur.Skills) {
 					fmt.Println("Choix invalide, choisissez un sort dans la liste.")
 				}
+			}
+			if choixSort == 0 {
+				continue
 			}
 
 			sort := joueur.Skills[choixSort-1]
@@ -205,5 +222,11 @@ func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) boo
 
 func TrainingFight(joueur *personnage.Etudiant) bool {
 	monstre := personnage.Init_Maxime()
+	if joueur.TutorielFait {
+		monstre.ArgentDrop = 2
+	} else {
+		monstre.ArgentDrop = 20
+		joueur.TutorielFait = true
+	}
 	return Combat(&monstre, joueur)
 }
