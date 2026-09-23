@@ -27,10 +27,12 @@ func main() {
 func lancerJeuTerminal() {
 	fmt.Println("\n========================================")
 	fmt.Println("           SHINOBI GENESIS")
-	fmt.Println("========================================\n")
+	fmt.Println("========================================")
+	fmt.Println()
 	fmt.Println("Bienvenue dans Shinobi Genesis, jeune apprenti ninja !")
 	fmt.Println("Affronte des monstres, gagne des pièces et améliore ton personnage.")
-	fmt.Println("\n--- Création du personnage ---\n")
+	fmt.Println("\n--- Création du personnage ---")
+	fmt.Println()
 	fmt.Println("Écrivez votre pseudo :")
 
 	var choix string
@@ -43,7 +45,8 @@ func lancerJeuTerminal() {
 
 	fmt.Println("\n========================================")
 	fmt.Println("         SÉLECTION DE LA CLASSE")
-	fmt.Println("========================================\n")
+	fmt.Println("========================================")
+	fmt.Println()
 	fmt.Println("La classe que tu choisis définit le mode de difficulté du jeu.")
 	fmt.Println("")
 	fmt.Println("Kage = Tres facile")
@@ -72,12 +75,19 @@ func lancerJeuTerminal() {
 				fmt.Println("\n!!! MODE HARDCORE ACTIVÉ !!!")
 				fmt.Println("Une seule mort est décisive : la partie s'arrêtera définitivement.")
 				fmt.Println("C'est ici que le jeu devient vraiment intéressant.")
-				fmt.Println("Bonne chance pour terminer le jeu dans cet état !\n")
+				fmt.Println("Bonne chance pour terminer le jeu dans cet état !")
+				fmt.Println()
 			}
 			fmt.Println("\n========================================")
 			fmt.Println("          VOTRE PERSONNAGE")
+<<<<<<< HEAD:main.go
 			fmt.Println("========================================\n")
 			personnage.DisplayInfo(*etat.JoueurActuel)
+=======
+			fmt.Println("========================================")
+			fmt.Println()
+			personnage.DisplayInfo(c1)
+>>>>>>> 4487d01a5fd8bdd9c86ac19c654c3be66ae64931:main/main.go
 			fmt.Println()
 			menu.Menu(etat.JoueurActuel)
 			return

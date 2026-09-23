@@ -127,8 +127,8 @@ func Init_Demon_a_queue() Monster {
 func Init_Madara() Monster {
 	return Monster{
 		Nom:            "Madara",
-		Max_vie:        150,
-		Vie:            150,
+		Max_vie:        200,
+		Vie:            200,
 		Points_attaque: 35,
 		Drop:           []string{"Sharingan", "Trophee en or"},
 		ArgentDrop:     150,

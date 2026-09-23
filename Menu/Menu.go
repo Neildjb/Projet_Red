@@ -115,14 +115,10 @@ Un projet réalisé dans le cadre du Projet RED
 Bachelor 1 — 2026
 
 ---------------- Équipe de développement ----------------
-Mathias Fontagne
-Développement • Gameplay • Conception
+- Mathias Fontagne : développement, gameplay et conception
+- Neil Djebali : développement, gameplay et conception
+- Andy Abbas : développement, gameplay et conception
 
-[Nom de l'élève 2]
-Développement • Gameplay • Conception
-
-[Nom de l'élève 3]
-Développement • Gameplay • Conception
 
 ----------------------- Mentors --------------------------
 Un grand merci à nos deux mentors pour leur accompagnement,
