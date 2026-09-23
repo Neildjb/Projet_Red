@@ -2,6 +2,8 @@
 
 Jeu de combat au tour par tour développé en Go dans le cadre du Projet RED.
 
+Shinobi Genesis est un projet réalisé au Campus Ynov Bordeaux par trois étudiants de Bachelor 1. Le jeu a été conçu, développé et finalisé en une semaine, depuis l'idée initiale jusqu'à la création d'une expérience complète avec combats, progression, inventaire, équipements, quêtes et affichage graphique.
+
 ## Démarrage
 
 Depuis la racine du projet :
@@ -121,12 +123,22 @@ go test ./...
 
 ## Crédits
 
-Projet réalisé au Campus Ynov Bordeaux, Bachelor 1, 2026.
+Ce projet a été réalisé au Campus Ynov Bordeaux, en Bachelor 1, dans le cadre du Projet RED 2026.
 
-- Mathias Fontagne
-- Neil Djebali
-- Andy Abbas
+L'objectif était de concevoir et de développer un jeu vidéo complet dans un temps limité. En une semaine, l'équipe a travaillé sur le gameplay, les combats, la progression du personnage, les menus, les systèmes d'inventaire et l'affichage graphique.
 
-Merci à Maxime et Sarha pour leur accompagnement.
+### Équipe de développement
+
+- Mathias Fontagne : développement, gameplay et conception
+- Neil Djebali : développement, gameplay et conception
+- Andy Abbas : développement, gameplay et conception
+
+### Remerciements
+
+Un grand merci à nos mentors, Maxime et Sarha, pour leur accompagnement, leurs conseils, leur aide et leur soutien tout au long du projet.
+
+Merci également à toutes les personnes ayant contribué, directement ou indirectement, à la réalisation de Shinobi Genesis.
+
+Merci d'avoir joué !
 
 © 2026 — Projet RED • Ynov Bordeaux
