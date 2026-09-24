@@ -11,6 +11,10 @@ import (
 
 const degatsPoisonParTour = 10
 
+func degatsCritiques(degats int) int {
+	return degats * 3 / 2
+}
+
 func displayCombatStatus(monstre *personnage.Monster, joueur *personnage.Etudiant) {
 	fmt.Println("Vie de", joueur.Nom, ":", joueur.Vie, "/", joueur.MaxVie)
 	fmt.Println("Vie de", monstre.Nom, ":", monstre.Vie, "/", monstre.Max_vie)
@@ -89,7 +93,8 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 			}
 		}
 		displayCombatStatus(monstre, joueur)
-		if !characterTurn(joueur, monstre) {
+		coupCritique := tour%3 == 0
+		if !characterTurn(joueur, monstre, coupCritique) {
 			fmt.Println(monstre.Nom, "est vaincu !")
 			collectMonsterDrop(monstre, joueur)
 			collectMonsterMoney(monstre, joueur)
@@ -97,11 +102,16 @@ func Combat(monstre *personnage.Monster, joueur *personnage.Etudiant) bool {
 			return true
 		}
 
-		joueur.Vie -= monstre.Points_attaque
+		degatsMonstre := monstre.Points_attaque
+		if coupCritique {
+			degatsMonstre = degatsCritiques(degatsMonstre)
+			fmt.Println("Coup critique !")
+		}
+		joueur.Vie -= degatsMonstre
 		if joueur.Vie < 0 {
 			joueur.Vie = 0
 		}
-		fmt.Println(monstre.Nom, "inflige", monstre.Points_attaque, "dégâts à", joueur.Nom)
+		fmt.Println(monstre.Nom, "inflige", degatsMonstre, "dégâts à", joueur.Nom)
 		if gestionmort.Isdead(joueur) {
 			fmt.Println(joueur.Nom, "a perdu le combat.")
 			return false
@@ -170,7 +180,7 @@ func inventoryTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) boo
 	}
 }
 
-func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) bool {
+func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster, coupCritique bool) bool {
 	for {
 		fmt.Println("\nMenu")
 		fmt.Println("1 - Attaquer")
@@ -211,6 +221,10 @@ func characterTurn(joueur *personnage.Etudiant, monstre *personnage.Monster) boo
 
 			sort := joueur.Skills[choixSort-1]
 			degats := sorts.SpellDamage(sort)
+			if coupCritique {
+				degats = degatsCritiques(degats)
+				fmt.Println("Coup critique !")
+			}
 			monstre.Vie -= degats
 			if monstre.Vie < 0 {
 				monstre.Vie = 0
