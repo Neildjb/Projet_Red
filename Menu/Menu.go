@@ -394,7 +394,7 @@ func arenaMenu(joueur *personnage.Etudiant) {
 		fmt.Println("0 - Retour au menu")
 
 		var choix string
-		fmt.Scanln(&choix)
+		fmt.Scan(&choix)
 
 		var monstre personnage.Monster
 		seuilExperience := 0
