@@ -9,21 +9,21 @@ import (
 )
 
 func Marchand(c *personnage.Etudiant) {
+	fmt.Println("=========== Marchand ===========")
+	fmt.Println("")
 	fmt.Println("Je suis le marchand, je peux vous vendre des objets pour améliorer vos compétences.")
+	fmt.Println("Tu as l'embarras du choix. Il te reste", c.Argent, "euros.")
+	for i, it := range boutique {
+		fmt.Printf("%d - %s (%d euros)\n", i+1, it.Nom, prixActuel(it))
+	}
+	fmt.Println("0 - Retour")
 
 	for {
-		fmt.Println("Tu as l'embarras du choix. Il te reste", c.Argent, "euros.")
-		for i, it := range boutique {
-			fmt.Printf("%d - %s (%d euros)\n", i+1, it.Nom, prixActuel(it))
-		}
-		fmt.Println("0 - Retour")
-
 		var saisie string
 		fmt.Scanln(&saisie)
 
 		n, err := strconv.Atoi(saisie)
 		if err != nil || n < 0 || n > len(boutique) {
-			fmt.Println("Gamin t'es taré ou quoi. Ce dont tu parles n'existe pas")
 			continue
 		}
 		if n == 0 {

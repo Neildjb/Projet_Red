@@ -33,24 +33,22 @@ var pieces = map[string]piece{
 }
 
 func Forgeron(c *personnage.Etudiant) {
+	fmt.Println("\nIl te reste", c.Argent, "pièces d'or. Chaque fabrication coûte", coutFabrication, "pièces.")
+	for i, r := range recettes {
+		fmt.Printf("%d - %s il te faudra : ", i+1, r.Nom)
+		for ressource, quantite := range r.Ressources {
+			fmt.Printf("%d %s ", quantite, ressource)
+		}
+		fmt.Println()
+	}
+	fmt.Println("0 - Retour")
 
 	for {
-		fmt.Println("\nIl te reste", c.Argent, "pièces d'or. Chaque fabrication coûte", coutFabrication, "pièces.")
-		for i, r := range recettes {
-			fmt.Printf("%d - %s il te faudra : ", i+1, r.Nom)
-			for ressource, quantite := range r.Ressources {
-				fmt.Printf("%d %s ", quantite, ressource)
-			}
-			fmt.Println()
-		}
-		fmt.Println("0 - Retour")
-
 		var saisie string
 		fmt.Scanln(&saisie)
 
 		n, err := strconv.Atoi(saisie)
 		if err != nil || n < 0 || n > len(recettes) {
-			fmt.Println("Ce n'est pas au menu, gamin.")
 			continue
 		}
 		if n == 0 {

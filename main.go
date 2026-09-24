@@ -61,7 +61,7 @@ recommencer:
 		fmt.Println("Admin0000(remplace 0000 par le code secret) = mode de triche")
 		fmt.Println("")
 		for {
-			fmt.Println("Écrivez la class de votre choix :")
+			fmt.Println("Écrivez la classe de votre choix :")
 			_, err2 := fmt.Scanln(&choix2)
 			if err2 != nil {
 				fmt.Println("Erreur de lecture de votre classe")

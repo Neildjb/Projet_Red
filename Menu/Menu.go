@@ -48,7 +48,7 @@ func Menu(c *personnage.Etudiant) Resultat {
 		case "3":
 			npc.Marchand(c)
 		case "4":
-			fmt.Println("\n--- Forgeron ---")
+			fmt.Println("\n=========== Forgeron ===========")
 			npc.Forgeron(c)
 		case "5":
 			fmt.Println("\n--- Tutoriel de combat ---")
@@ -352,7 +352,7 @@ func ecole(joueur *personnage.Etudiant) {
 		return
 	}
 
-	fmt.Println("Tu peux tenter de devenir", nouvelleClasse, "en", lieu+".")
+	fmt.Println("Tu peux tenter de devenir", nouvelleClasse, ", pour cela, il faut ", lieu+".")
 	if joueur.ExperienceCombat < seuilExperience {
 		fmt.Println("Le combat ne peut pas commencer. Il faut au moins", seuilExperience, "d'expérience de combat.")
 		fmt.Println("Ton expérience actuelle est de", joueur.ExperienceCombat, ".")
