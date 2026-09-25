@@ -75,9 +75,9 @@ func CharacterCreation(nom, classe string) personnage.Etudiant {
 			10000,
 			10000,
 			1000000,
-			[]string{"Potion de soin", "Potion de poison", "Potion de guérison du poison", "Potion de PV total", "upgradeinventoryslot1", "upgradeinventoryslot2", "Trophee en or"},
+			[]string{"Potion de soin", "Potion de poison", "Potion de guérison du poison", "Potion de PV total", "upgradeinventoryslot1", "upgradeinventoryslot2", "Trophée en or"},
 			personnage.Equipment{
-				Headgear:  "bandeau frontale ninja",
+				Headgear:  "bandeau frontal ninja",
 				BodyArmor: "Manteau Akatsuki",
 				LegArmor:  "Pantalon des Six Chemins",
 				FeetArmor: "Sandales du Shinobi",

@@ -80,7 +80,7 @@ func equipementsFabriquesDepuisEtat(inventaire []string, equipement Equipment) m
 
 func estEquipement(item string) bool {
 	switch item {
-	case "bandeau frontale ninja", "Manteau Akatsuki", "Pantalon des Six Chemins", "Sandales du Shinobi":
+	case "bandeau frontal ninja", "Manteau Akatsuki", "Pantalon des Six Chemins", "Sandales du Shinobi":
 		return true
 	default:
 		return false
@@ -113,7 +113,7 @@ func afficherEquipement(nom string) string {
 
 func bonusEquipement(nom string) int {
 	return map[string]int{
-		"bandeau frontale ninja":   15,
+		"bandeau frontal ninja":    15,
 		"Manteau Akatsuki":         20,
 		"Pantalon des Six Chemins": 25,
 		"Sandales du Shinobi":      30,
@@ -144,38 +144,38 @@ func NomMonstrePourClasse(nomMonstre, classe string) string {
 		"Naruto_Prime": {
 			"Ninjas déserteurs": "Neil",
 			"Golems de chakra":  "Andy",
-			"Demon a queue":     "Mathias",
+			"Démon à queues":    "Mathias",
 			"Madara":            "Maxime_boss",
 		},
 		"Admin4416": {
 			"Ninjas déserteurs": "Neil",
 			"Golems de chakra":  "Andy",
-			"Demon a queue":     "Mathias",
+			"Démon à queues":    "Mathias",
 			"Madara":            "Maxime_boss",
 		},
 		"Kage": {
 			"Ninjas déserteurs": "Pain",
 			"Golems de chakra":  "Itachi",
-			"Demon a queue":     "Obito",
+			"Démon à queues":    "Obito",
 			"Madara":            "Madara",
 		},
 		"Jonin": {
 			"Ninjas déserteurs": "Deidara",
 			"Golems de chakra":  "Kisame",
-			"Demon a queue":     "Sasori",
+			"Démon à queues":    "Sasori",
 			"Madara":            "Orochimaru",
 		},
 		"Genin": {
 			"Ninjas déserteurs": "Asuma",
 			"Golems de chakra":  "Gaara",
-			"Demon a queue":     "Shino",
-			"Madara":            "Kakshi",
+			"Démon à queues":    "Shino",
+			"Madara":            "Kakashi",
 		},
 		"Ninja": {
 			"Ninjas déserteurs": "Ninja déserteur",
 			"Golems de chakra":  "Sai",
-			"Demon a queue":     "Yamato",
-			"Madara":            "Danzo",
+			"Démon à queues":    "Yamato",
+			"Madara":            "Danzô",
 		},
 	}
 
@@ -225,7 +225,7 @@ func Init_Golems_de_chakra() Monster {
 
 func Init_Demon_a_queue() Monster {
 	return Monster{
-		Nom:            "Demon a queue",
+		Nom:            "Démon à queues",
 		Max_vie:        120,
 		Vie:            120,
 		Points_attaque: 30,
@@ -241,7 +241,7 @@ func Init_Madara() Monster {
 		Max_vie:        200,
 		Vie:            200,
 		Points_attaque: 40,
-		Drop:           []string{"Sharingan", "Trophee en or"},
+		Drop:           []string{"Sharingan", "Trophée en or"},
 		ArgentDrop:     150,
 		ExperienceDrop: 5,
 	}

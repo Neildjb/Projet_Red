@@ -14,7 +14,7 @@ type Recette struct {
 }
 
 var recettes = []Recette{
-	{Nom: "bandeau frontale ninja", Ressources: map[string]int{"Acier": 1}},
+	{Nom: "bandeau frontal ninja", Ressources: map[string]int{"Acier": 1}},
 	{Nom: "Manteau Akatsuki", Ressources: map[string]int{"Fil d'Akatsuki": 2}},
 	{Nom: "Pantalon des Six Chemins", Ressources: map[string]int{"Tissu déchiré": 3}},
 	{Nom: "Sandales du Shinobi", Ressources: map[string]int{"bois millénaire": 4}},
@@ -26,7 +26,7 @@ type piece struct {
 }
 
 var pieces = map[string]piece{
-	"bandeau frontale ninja":   {Slot: "tete", Bonus: 15},
+	"bandeau frontal ninja":   {Slot: "tete", Bonus: 15},
 	"Manteau Akatsuki":         {Slot: "torse", Bonus: 20},
 	"Pantalon des Six Chemins": {Slot: "jambes", Bonus: 25},
 	"Sandales du Shinobi":      {Slot: "pieds", Bonus: 30},

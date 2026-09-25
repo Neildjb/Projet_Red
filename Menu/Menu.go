@@ -109,7 +109,7 @@ func quetesFinJeu(joueur personnage.Etudiant) {
 		experienceComplete := joueur.ExperienceCombat > 30
 		nombreSorts := nombreDeSorts(joueur)
 		sortsComplets := nombreSorts == 4
-		tropheeObtenu := possedeObjet(joueur, "Trophee en or")
+		tropheeObtenu := possedeObjet(joueur, "Trophée en or")
 		nombreEquipements := nombreDEquipements(joueur)
 		equipementComplet := nombreEquipements == 4
 		rangFinalAtteint := joueur.Classe == "Kage" || joueur.Classe == "Admin4416" || joueur.Hardcore

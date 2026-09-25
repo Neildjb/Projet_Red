@@ -1,6 +1,6 @@
 package npc
 
-// TACHE 7 : Marchand
+// TÂCHE 7 : Marchand
 
 import (
 	"Projet_Red/personnage"
@@ -54,7 +54,7 @@ func Marchand(c *personnage.Etudiant) {
 				fmt.Println("Allez dans l'inventaire et utilisez l'objet pour apprendre une nouvelle technique.")
 			}
 		} else {
-			fmt.Println("Il y'en a déja un autre ne sois pas gourmand")
+			fmt.Println("Il y en a déjà un autre, ne sois pas gourmand.")
 		}
 
 	}
@@ -67,7 +67,7 @@ func AddInventory(c *personnage.Etudiant, item string) bool {
 		for _, v := range c.Inventaire {
 			if v == item {
 				doublon = true
-				fmt.Println("Il y'en a déja un autre ne sois pas gourmand")
+				fmt.Println("Il y en a déjà un autre, ne sois pas gourmand.")
 			}
 			if doublon {
 				return false

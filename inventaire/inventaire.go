@@ -30,7 +30,7 @@ func AccessInventory(e *personnage.Etudiant) {
 				fmt.Println("Votre inventaire est vide.")
 				continue
 			}
-			fmt.Println("Que souhaites-tu retirer, tapes le chiffre coreespondant à la place de l'item.")
+			fmt.Println("Que souhaites-tu retirer ? Tape le chiffre correspondant à la place de l'item.")
 			for i, r := range e.Inventaire {
 				fmt.Println(strconv.Itoa(i+1) + ": " + r)
 			}
@@ -98,7 +98,7 @@ func utiliserObjet(e *personnage.Etudiant) {
 		*e = potions.FullHealthPot(*e)
 	case "Potion de guérison du poison":
 		fmt.Println("Cette potion est utilisable uniquement pendant un combat.")
-	case "bandeau frontale ninja", "Manteau Akatsuki", "Pantalon des Six Chemins", "Sandales du Shinobi":
+	case "bandeau frontal ninja", "Manteau Akatsuki", "Pantalon des Six Chemins", "Sandales du Shinobi":
 		npc.Equiper(e, objet)
 	case "upgradeinventoryslot1", "upgradeinventoryslot2":
 		ancienneCapacite := e.CapaciteInventaire

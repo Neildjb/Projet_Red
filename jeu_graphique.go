@@ -64,16 +64,16 @@ func (j *Jeu) chargerSprites() {
 		"Sasori|Jonin":     "Sasori.png",
 		"Orochimaru|Jonin": "Orochimaru.png",
 
-		"Asuma|Genin":  "Asuma.png",
-		"Gaara|Genin":  "Gaara.png",
-		"Shino|Genin":  "Shino.png",
-		"Kakshi|Genin": "Kakshi.png",
+		"Asuma|Genin":   "Asuma.png",
+		"Gaara|Genin":   "Gaara.png",
+		"Shino|Genin":   "Shino.png",
+		"Kakashi|Genin": "Kakshi.png",
 
 		"Maxime":                "maxime.png",
 		"Ninja déserteur|Ninja": "NINJA_deserteur.png",
 		"Sai|Ninja":             "SAI.png",
 		"Yamato|Ninja":          "Yamato.png",
-		"Danzo|Ninja":           "Danzo.png",
+		"Danzô|Ninja":           "Danzo.png",
 	}
 	j.spritesMonstres = make(map[string]*ebiten.Image)
 	for nom, fichier := range nomsFichiersMonstres {
